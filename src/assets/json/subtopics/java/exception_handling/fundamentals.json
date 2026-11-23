@@ -1,0 +1,52 @@
+{
+  "name": "Exception Handling Fundamentals",
+  "overview": "Break a tiny Java program on purpose. Follow the exception up the call stack and find the first place that can actually do something about it.",
+  "sections": [
+    {
+      "title": "Know when the failure happens",
+      "content": "The compiler catches invalid source. During execution, a problem such as accessing past the end of an array can throw an exception object."
+    },
+    {
+      "title": "Follow the stack",
+      "content": "Java searches for a matching catch handler in the current method and its callers. If no handler catches the exception, the affected thread ends.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/exception_handling/fundamentals/call-stack-propagation.svg",
+          "alt": "How an exception travels",
+          "caption": "The JVM looks for a matching handler as the call stack unwinds."
+        }
+      ]
+    },
+    {
+      "title": "Recover where you can",
+      "content": "Handle a specific failure where you can give a useful response or retry safely. Let other failures propagate to a caller that has more context."
+    }
+  ],
+  "codeExamples": [
+    {
+      "title": "Runtime Error Example",
+      "description": "ArrayIndexOutOfBoundsException during execution",
+      "code": "int[] arr = new int[2];\narr[5] = 10; // runtime exception",
+      "language": "java"
+    }
+  ],
+  "keyPoints": [
+    "Trace a divide-by-zero failure from the crash site to a handler. You've got it when you can explain where to recover and where to let it propagate."
+  ],
+  "references": [
+    {
+      "title": "Java Language Specification - Chapter 11: Exceptions",
+      "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-11.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "What happens after a method throws?",
+      "answer": "Normal execution in that method stops. Java looks for a matching handler as it unwinds the stack."
+    },
+    {
+      "question": "Does an uncaught exception always stop the whole JVM?",
+      "answer": "It ends the affected thread. Other threads can keep running."
+    }
+  ]
+}

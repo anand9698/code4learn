@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Syllabus outline",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["id", "slug", "title", "difficulty", "topics"],
+    "properties": {
+      "id": { "type": "integer", "minimum": 1 },
+      "slug": { "$ref": "#/definitions/slug" },
+      "title": { "$ref": "#/definitions/text" },
+      "difficulty": { "enum": ["basic", "intermediate", "advanced"] },
+      "topics": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "name", "summary"],
+          "properties": {
+            "id": { "$ref": "#/definitions/slug" },
+            "name": { "$ref": "#/definitions/text" },
+            "summary": { "$ref": "#/definitions/summary" },
+            "subTopics": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["id", "name", "summary"],
+                "properties": {
+                  "id": { "$ref": "#/definitions/slug" },
+                  "name": { "$ref": "#/definitions/text" },
+                  "summary": { "$ref": "#/definitions/summary" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "text": { "type": "string", "pattern": "\\S" },
+    "summary": { "type": "string", "pattern": "\\S", "maxLength": 180 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:[_-][a-z0-9]+)*$" }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "ApplicationContext vs BeanFactory",
+  "overview": "Both Spring containers can wire beans. The interview gets interesting when one is wired wrong. Pick a container and predict when the failure shows up.",
+  "sections": [
+    {
+      "title": "Start with the container contract",
+      "content": "BeanFactory defines the core container contract for finding and providing beans. ApplicationContext builds on it with application-level services.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/applicationcontext_vs_beanfactory/beanfactory-vs-applicationcontext.svg",
+          "alt": "BeanFactory and ApplicationContext",
+          "caption": "ApplicationContext extends the basic bean factory contract with application services."
+        }
+      ]
+    },
+    {
+      "title": "Know when beans appear",
+      "content": "An application context typically creates non-lazy singletons during startup. A bean loaded on demand can surface a configuration issue later."
+    },
+    {
+      "title": "Choose for the job",
+      "content": "Use ApplicationContext for a typical application that needs events, resource loading, messages, and automatic integration of container extensions."
+    }
+  ],
+  "keyPoints": [
+    "Explain which container you'd choose for a typical Spring app and when a broken bean would fail during eager or lazy initialization."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Reference - Core Container (Beans, Context)",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    },
+    {
+      "title": "Spring Framework Documentation - IoC Container",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    },
+    {
+      "title": "Spring Framework Reference: Lazy-initialized Beans",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-lazy-init.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Why can ApplicationContext fail early?",
+      "answer": "Default eager creation of non-lazy singletons can expose missing dependencies while the context starts."
+    },
+    {
+      "question": "What does ApplicationContext add?",
+      "answer": "Application services such as event publication, message resolution, and resource access."
+    }
+  ]
+}

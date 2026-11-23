@@ -1,0 +1,56 @@
+{
+  "name": "Your First Java Program",
+  "overview": "Get 'Hello, World!' onto the screen, then trace how Java found your code. The first line of output is small. Knowing why it ran is the win.",
+  "sections": [
+    {
+      "title": "Give the file a home",
+      "content": "In the classic form, put optional package and import declarations before the class. When compiling a public class named HelloWorld, name the source file HelloWorld.java.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/first_java_program_structure_and_main_method/java-program-structure.svg",
+          "alt": "The classic Java program",
+          "caption": "The classic form declares the class and its main method explicitly."
+        }
+      ]
+    },
+    {
+      "title": "Start at main",
+      "content": "The classic signature is public static void main(String[] args). Static lets the launcher call it without an instance. The array holds command-line arguments."
+    },
+    {
+      "title": "Compile, run, and try the shorter form",
+      "content": "Compile HelloWorld.java with javac, then run java HelloWorld. Java 25 also supports compact source files and eligible instance or no-argument main methods."
+    }
+  ],
+  "codeExamples": [
+    {
+      "title": "The Classic Hello World",
+      "description": "The program that started billions of Java journeys",
+      "code": "public class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n    }\n}",
+      "language": "java"
+    }
+  ],
+  "keyPoints": [
+    "Compile and run the classic example, pass it an argument, and explain how that word reached main."
+  ],
+  "references": [
+    {
+      "title": "Java Language Specification (JLS) - Chapter 12: Execution",
+      "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-12.html"
+    },
+    {
+      "title": "Java Virtual Machine Specification - Loading, Linking, and Initializing",
+      "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-5.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Why does the classic main use static?",
+      "answer": "The launcher can invoke it without constructing the class."
+    },
+    {
+      "question": "Can main return an int as the entry point?",
+      "answer": "The entry point returns void. Use System.exit when you need to set an explicit process exit status."
+    }
+  ]
+}

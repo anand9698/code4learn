@@ -1,0 +1,837 @@
+[
+  {
+    "id": 1,
+    "slug": "core_spring_framework_deep_dive",
+    "title": "Core Spring Framework (Deep Dive)",
+    "difficulty": "basic",
+    "topics": [
+      {
+        "name": "Inversion of Control (IoC) & Dependency Injection (DI)",
+        "summary": "Follow a Spring bean from registration through injection, use, and cleanup.",
+        "subTopics": [
+          {
+            "name": "What is IoC and why Spring uses it",
+            "id": "what_is_ioc_and_why_spring_uses_it",
+            "summary": "Let the container assemble objects and manage their lifecycle while application classes focus on behavior."
+          },
+          {
+            "name": "What problem does DI solve?",
+            "id": "what_problem_does_di_solve",
+            "summary": "Pass collaborators in so production code can swap implementations and tests can use fakes."
+          },
+          {
+            "name": "How Spring creates and injects beans internally",
+            "id": "how_spring_creates_and_injects_beans_internally",
+            "summary": "Track how Spring registers definitions, resolves dependencies, initializes objects, and can wrap them in proxies."
+          },
+          {
+            "name": "ApplicationContext vs BeanFactory",
+            "id": "applicationcontext_vs_beanfactory",
+            "summary": "Compare the basic BeanFactory with ApplicationContext and its additional startup and application services."
+          },
+          {
+            "name": "Eager vs Lazy loading - When to use which?",
+            "id": "eager_vs_lazy_loading_when_to_use_which",
+            "summary": "Delay an expensive bean when useful, and predict when an eager dependency will still create it at startup."
+          },
+          {
+            "name": "Bean Scopes (Singleton, Prototype, Request, Session, Application)",
+            "id": "bean_scopes_singleton_prototype_request_session_application",
+            "summary": "Choose scope by deciding who shares an instance and when it should be released."
+          },
+          {
+            "name": "Why prototype beans don't get destroyed automatically?",
+            "id": "why_prototype_beans_don_t_get_destroyed_automatically",
+            "summary": "Spring initializes prototypes but leaves their later cleanup to whoever obtains them."
+          },
+          {
+            "name": "Bean Lifecycle (@PostConstruct, @PreDestroy)",
+            "id": "bean_lifecycle_postconstruct_predestroy",
+            "summary": "Use PostConstruct after dependency injection and PreDestroy during managed shutdown where the scope supports it."
+          },
+          {
+            "name": "Complete bean lifecycle steps",
+            "id": "complete_bean_lifecycle_steps",
+            "summary": "Trace definition registration, construction, injection, initialization, post-processing, and destruction."
+          },
+          {
+            "name": "Bean Initialization and Destruction callbacks",
+            "id": "bean_initialization_and_destruction_callbacks",
+            "summary": "Compare annotation callbacks, lifecycle interfaces, and configured init or destroy methods."
+          },
+          {
+            "name": "Aware Interfaces (BeanNameAware, ApplicationContextAware)",
+            "id": "aware_interfaces_beannameaware_applicationcontextaware",
+            "summary": "Use an Aware callback when a bean truly needs its container-supplied name or context."
+          },
+          {
+            "name": "Configuration Styles: Java-based (@Configuration), Annotation-based (@Component), XML",
+            "id": "configuration_styles_java_based_configuration_annotation_based_component_xml",
+            "summary": "Compare factory methods, component scanning, and XML as ways to register bean definitions."
+          },
+          {
+            "name": "Dependency Injection types: Constructor (WHY preferred) vs Setter vs Field (WHY discouraged)",
+            "id": "dependency_injection_types_constructor_why_preferred_vs_setter_vs_field_why_discouraged",
+            "summary": "Use constructor injection for required dependencies and setters for optional configuration where appropriate."
+          },
+          {
+            "name": "Autowiring modes and @Qualifier usage",
+            "id": "autowiring_modes_and_qualifier_usage",
+            "summary": "Narrow matching beans with a qualifier and distinguish modern annotation injection from older XML modes."
+          },
+          {
+            "name": "@Primary vs @Qualifier",
+            "id": "primary_vs_qualifier",
+            "summary": "Primary supplies a preferred default. A qualifier narrows which candidates can satisfy an injection point."
+          }
+        ],
+        "id": "inversion_of_control_ioc_and_dependency_injection_di"
+      },
+      {
+        "name": "Spring Bean Management",
+        "summary": "Register beans deliberately and choose the right extension point for customization.",
+        "subTopics": [
+          {
+            "name": "@Component, @Service, @Repository, @Controller",
+            "id": "component_service_repository_controller",
+            "summary": "Use stereotypes to signal a general component, business service, persistence adapter, or web controller."
+          },
+          {
+            "name": "Why @Repository exists (exception translation)",
+            "id": "why_repository_exists_exception_translation",
+            "summary": "Repository marks persistence code and can participate in translating supported provider exceptions."
+          },
+          {
+            "name": "@Configuration vs @Component",
+            "id": "configuration_vs_component",
+            "summary": "Configuration marks a source of bean definitions. Component marks a type eligible for scanning."
+          },
+          {
+            "name": "@Bean vs @Component",
+            "id": "bean_vs_component",
+            "summary": "Use Bean for an explicit factory method and Component for types registered through scanning."
+          },
+          {
+            "name": "Bean Naming Strategies",
+            "id": "bean_naming_strategies",
+            "summary": "Give beans explicit names when needed and understand how generated names can collide."
+          },
+          {
+            "name": "Lazy vs Eager Initialization",
+            "id": "lazy_vs_eager_initialization",
+            "summary": "Create required singletons early or delay a bean when the startup tradeoff is worth it."
+          },
+          {
+            "name": "@DependsOn annotation",
+            "id": "dependson_annotation",
+            "summary": "DependsOn expresses initialization order when there is no direct injected dependency."
+          },
+          {
+            "name": "BeanFactoryPostProcessor vs BeanPostProcessor",
+            "id": "beanfactorypostprocessor_vs_beanpostprocessor",
+            "summary": "Change definition metadata with a factory post-processor and wrap instances with a bean post-processor."
+          },
+          {
+            "name": "Real-time use cases for BeanPostProcessor and BeanFactoryPostProcessor",
+            "id": "real_time_use_cases_for_beanpostprocessor_and_beanfactorypostprocessor",
+            "summary": "Compare editing bean definitions before creation with wrapping initialized objects for cross-cutting behavior."
+          }
+        ],
+        "id": "spring_bean_management"
+      },
+      {
+        "name": "Autowiring & Bean Resolution",
+        "summary": "Predict how Spring chooses a dependency and diagnose ambiguity or cycles.",
+        "subTopics": [
+          {
+            "name": "How Spring resolves dependency when multiple beans of same type",
+            "id": "how_spring_resolves_dependency_when_multiple_beans_of_same_type",
+            "summary": "Start with candidates of the requested type, then consider qualifiers, primary status, and applicable name matching."
+          },
+          {
+            "name": "@Autowired working internally",
+            "id": "autowired_working_internally",
+            "summary": "Spring processes injection metadata and resolves candidate beans through the container."
+          },
+          {
+            "name": "Optional Injection with @Autowired",
+            "id": "required_false_deprecated_behavior",
+            "summary": "Compare optional injection through required=false, Optional, or a nullable parameter."
+          },
+          {
+            "name": "Circular Dependency - Constructor vs Setter injection case",
+            "id": "circular_dependency_constructor_vs_setter_injection_case",
+            "summary": "Constructor cycles prevent construction. Setter cycles may be resolvable in some configurations but are better redesigned."
+          },
+          {
+            "name": "Why constructor injection fails for circular dependency",
+            "id": "why_constructor_injection_fails_for_circular_dependency",
+            "summary": "Two constructors cannot each receive the other fully created object first. Break the cycle with clearer responsibilities."
+          }
+        ],
+        "id": "autowiring_and_bean_resolution"
+      },
+      {
+        "name": "Spring Expression Language (SpEL)",
+        "summary": "Use small expressions to select and transform configuration values.",
+        "subTopics": [
+          {
+            "name": "SpEL basics and syntax",
+            "id": "spel_basics_and_syntax",
+            "summary": "Read SpEL syntax for literals, operators, property access, and simple expressions."
+          },
+          {
+            "name": "Using SpEL with @Value",
+            "id": "using_spel_with_value",
+            "summary": "Use #{...} for an expression and ${...} for a configuration placeholder."
+          },
+          {
+            "name": "Accessing beans, properties, collections via SpEL",
+            "id": "accessing_beans_properties_collections_via_spel",
+            "summary": "Navigate bean properties and collections or select particular elements in an expression."
+          }
+        ],
+        "id": "spring_expression_language_spel"
+      },
+      {
+        "name": "Aspect-Oriented Programming (AOP)",
+        "summary": "Put shared behavior around method calls and understand where proxy boundaries matter.",
+        "subTopics": [
+          {
+            "name": "What is AOP? Why needed?",
+            "id": "what_is_aop_why_needed",
+            "summary": "Use AOP to apply recurring behavior around selected calls without copying it into every method."
+          },
+          {
+            "name": "Cross-cutting concerns (Logging, Transaction management)",
+            "id": "cross_cutting_concerns_logging_transaction_management",
+            "summary": "Apply concerns such as transaction handling and logging consistently across services."
+          },
+          {
+            "name": "Aspect, Advice, Pointcut, JoinPoint",
+            "id": "aspect_advice_pointcut_joinpoint",
+            "summary": "A pointcut selects join points, advice supplies behavior, and an aspect groups the two."
+          },
+          {
+            "name": "Types of Advice (Before, After, Around, AfterReturning, AfterThrowing)",
+            "id": "types_of_advice_before_after_around_afterreturning_afterthrowing",
+            "summary": "Choose advice based on whether it runs before, after, or around the call and whether the call succeeds."
+          },
+          {
+            "name": "Annotations: @Before, @After, @Around (MOST IMPORTANT), @AfterReturning, @AfterThrowing",
+            "id": "annotations_before_after_around_most_important_afterreturning_afterthrowing",
+            "summary": "Use Around when advice must control if or when the original invocation proceeds."
+          },
+          {
+            "name": "Pointcut expressions execution(), within()",
+            "id": "pointcut_expressions_execution_within",
+            "summary": "Match method execution or calls on types using the pointcut designators Spring supports."
+          },
+          {
+            "name": "Proxy Mechanism - JDK Dynamic Proxy vs CGLIB",
+            "id": "proxy_mechanism_jdk_dynamic_proxy_vs_cglib",
+            "summary": "JDK proxies expose interfaces. Class-based proxies subclass eligible types."
+          },
+          {
+            "name": "Why interface-based proxy preferred?",
+            "id": "why_interface_based_proxy_preferred",
+            "summary": "Interface proxies keep callers on the interface contract. Class proxies fit APIs that require concrete types."
+          },
+          {
+            "name": "Self-invocation problem in Spring AOP",
+            "id": "self_invocation_problem_in_spring_aop",
+            "summary": "A call on this stays inside the target and bypasses proxy advice."
+          },
+          {
+            "name": "Transaction & AOP relation",
+            "id": "transaction_and_aop_relation",
+            "summary": "Transaction advice opens, joins, commits, or rolls back work around a proxied invocation."
+          },
+          {
+            "name": "Why @Transactional uses AOP",
+            "id": "why_transactional_uses_aop",
+            "summary": "The proxy interprets transaction metadata before and after a call crosses the proxy boundary."
+          },
+          {
+            "name": "Why private methods don't work with @Transactional",
+            "id": "why_private_methods_don_t_work_with_transactional",
+            "summary": "A private method cannot be intercepted by the ordinary Spring transaction proxy."
+          }
+        ],
+        "id": "aspect_oriented_programming_aop"
+      },
+      {
+        "name": "Spring Events",
+        "summary": "Publish application events to decouple the sender from interested listeners.",
+        "subTopics": [
+          {
+            "name": "ApplicationEvent and ApplicationListener",
+            "id": "applicationevent_and_applicationlistener",
+            "summary": "Publish an event through the context and register a listener for its type."
+          },
+          {
+            "name": "Custom Events",
+            "id": "custom_events",
+            "summary": "Model an event as a small object that carries the data its recipients need."
+          },
+          {
+            "name": "@EventListener annotation",
+            "id": "eventlistener_annotation",
+            "summary": "Use EventListener on a bean method to subscribe to matching application events."
+          }
+        ],
+        "id": "spring_events"
+      },
+      {
+        "name": "Spring Profiles & Environment",
+        "summary": "Use profiles to choose beans and property sources to choose configuration values.",
+        "subTopics": [
+          {
+            "name": "@Profile usage",
+            "id": "profile_usage",
+            "summary": "Register a bean only when matching profile conditions are active."
+          },
+          {
+            "name": "Environment abstraction",
+            "id": "environment_abstraction",
+            "summary": "Read active profiles and resolved configuration through Environment."
+          },
+          {
+            "name": "PropertySource and Property resolution",
+            "id": "propertysource_and_property_resolution",
+            "summary": "Spring resolves property keys across ordered sources, with higher-precedence values winning."
+          }
+        ],
+        "id": "spring_profiles_and_environment"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "spring_mvc_web_layer",
+    "title": "Spring MVC (Web Layer)",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Spring MVC Architecture",
+        "summary": "Trace a request from the front controller to its handler and response.",
+        "subTopics": [
+          {
+            "name": "DispatcherServlet workflow (VERY COMMON)",
+            "id": "dispatcherservlet_workflow_very_common",
+            "summary": "DispatcherServlet selects a handler adapter for the mapped handler and dispatches the request."
+          },
+          {
+            "name": "Front Controller Pattern",
+            "id": "front_controller_pattern",
+            "summary": "A single front controller coordinates request handling across multiple controllers."
+          },
+          {
+            "name": "HandlerMapping role",
+            "id": "handlermapping_role",
+            "summary": "HandlerMapping uses request information to locate an appropriate handler and related interceptors."
+          },
+          {
+            "name": "Controller, ViewResolver, Model",
+            "id": "controller_viewresolver_model",
+            "summary": "A controller can return model data and a view name. A resolver locates the view to render."
+          }
+        ],
+        "id": "spring_mvc_architecture"
+      },
+      {
+        "name": "Controller Development",
+        "summary": "Map requests to methods and bind each input from the right part of HTTP.",
+        "subTopics": [
+          {
+            "name": "@Controller vs @RestController",
+            "id": "controller_vs_restcontroller",
+            "summary": "Controller commonly renders views. RestController writes return values to the response body by default."
+          },
+          {
+            "name": "@RequestMapping vs @GetMapping, @PostMapping",
+            "id": "requestmapping_vs_getmapping_postmapping",
+            "summary": "Use general RequestMapping or choose a shortcut restricted to a specific HTTP method."
+          },
+          {
+            "name": "@PathVariable vs @RequestParam",
+            "id": "pathvariable_vs_requestparam",
+            "summary": "PathVariable reads a URI segment. RequestParam reads a named request parameter."
+          },
+          {
+            "name": "@RequestBody vs @ResponseBody",
+            "id": "requestbody_vs_responsebody",
+            "summary": "RequestBody deserializes the input body. ResponseBody writes the return value to the outgoing body."
+          },
+          {
+            "name": "@RequestBody vs @ModelAttribute",
+            "id": "requestbody_vs_modelattribute",
+            "summary": "Use RequestBody for a serialized payload and ModelAttribute to bind request values to an object."
+          }
+        ],
+        "id": "controller_development"
+      },
+      {
+        "name": "Data Binding & Validation",
+        "summary": "Bind request input, validate it, and report errors where the caller can fix them.",
+        "subTopics": [
+          {
+            "name": "@ModelAttribute",
+            "id": "modelattribute",
+            "summary": "ModelAttribute exposes a value to the model and can bind request data onto it."
+          },
+          {
+            "name": "@ModelAttribute lifecycle",
+            "id": "modelattribute_lifecycle",
+            "summary": "Spring can obtain or create an attribute, bind request data, and run validation before invoking the handler."
+          },
+          {
+            "name": "BindingResult",
+            "id": "bindingresult",
+            "summary": "Place BindingResult next to the bound argument when the handler should inspect its errors."
+          },
+          {
+            "name": "JSR-380 Bean Validation (@NotNull, @Size, @Email)",
+            "id": "jsr_380_bean_validation_notnull_size_email",
+            "summary": "Express field constraints such as NotNull, Size, and Email and trigger validation at the boundary."
+          },
+          {
+            "name": "Custom validators",
+            "id": "custom_validators",
+            "summary": "Add a validator when a rule depends on several fields or needs a domain-specific check."
+          }
+        ],
+        "id": "data_binding_and_validation"
+      },
+      {
+        "name": "Exception Handling",
+        "summary": "Turn known failures into consistent responses without duplicating error handling.",
+        "subTopics": [
+          {
+            "name": "@ExceptionHandler",
+            "id": "exceptionhandler",
+            "summary": "Map a particular exception type to a response or view in a handler method."
+          },
+          {
+            "name": "@ControllerAdvice",
+            "id": "controlleradvice",
+            "summary": "Use ControllerAdvice to share exception handlers and other controller support across controllers."
+          },
+          {
+            "name": "@ExceptionHandler vs @ControllerAdvice",
+            "id": "exceptionhandler_vs_controlleradvice",
+            "summary": "ExceptionHandler defines the handler method. ControllerAdvice makes shared handlers available beyond one controller."
+          },
+          {
+            "name": "Global vs local exception handling",
+            "id": "global_vs_local_exception_handling",
+            "summary": "Handle controller-specific cases locally and share common response behavior through advice."
+          },
+          {
+            "name": "Global Exception Handling Strategy and Best Practices",
+            "id": "global_exception_handling_strategy_and_best_practices",
+            "summary": "Return consistent status codes and error bodies while keeping internal exception details out of public responses."
+          }
+        ],
+        "id": "exception_handling"
+      },
+      {
+        "name": "View Technologies",
+        "summary": "Choose how MVC resolves a view name into the final HTML page.",
+        "subTopics": [
+          {
+            "name": "JSP integration",
+            "id": "jsp_integration",
+            "summary": "Configure a JSP view resolver and confirm that the selected deployment supports JSP."
+          },
+          {
+            "name": "Thymeleaf basics",
+            "id": "thymeleaf_basics",
+            "summary": "Use a Thymeleaf template to render model attributes into HTML on the server."
+          },
+          {
+            "name": "ViewResolver configuration",
+            "id": "viewresolver_configuration",
+            "summary": "Map logical view names to concrete templates with resolver prefixes, suffixes, and order."
+          }
+        ],
+        "id": "view_technologies"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "spring_data_access_and_orm",
+    "title": "Spring Data Access & ORM",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Spring JDBC",
+        "summary": "Run JDBC queries with Spring's resource management, row mapping, and error translation.",
+        "subTopics": [
+          {
+            "name": "JdbcTemplate",
+            "id": "jdbctemplate",
+            "summary": "JdbcTemplate runs SQL and manages common connection, statement, and result-set handling."
+          },
+          {
+            "name": "RowMapper",
+            "id": "rowmapper",
+            "summary": "Use RowMapper to turn each result row into a domain object."
+          },
+          {
+            "name": "ResultSetExtractor",
+            "id": "resultsetextractor",
+            "summary": "Use ResultSetExtractor when mapping needs access to the entire result set, such as grouped parent and child rows."
+          },
+          {
+            "name": "Exception translation",
+            "id": "exception_translation",
+            "summary": "Spring can wrap provider-specific SQL failures in portable DataAccessException subclasses."
+          }
+        ],
+        "id": "spring_jdbc"
+      },
+      {
+        "name": "Spring ORM & JPA Integration",
+        "summary": "Use managed entities and plan how related data is fetched inside a unit of work.",
+        "subTopics": [
+          {
+            "name": "JPA integration with Spring",
+            "id": "jpa_integration_with_spring",
+            "summary": "Spring integrates JPA persistence contexts and entity managers with managed transactions."
+          },
+          {
+            "name": "EntityManager vs Session",
+            "id": "entitymanager_vs_session",
+            "summary": "EntityManager is the standard JPA API. Session is Hibernate's provider-specific API."
+          },
+          {
+            "name": "@PersistenceContext",
+            "id": "persistencecontext",
+            "summary": "Use PersistenceContext to get a managed EntityManager reference."
+          },
+          {
+            "name": "Lazy vs Eager loading",
+            "id": "lazy_vs_eager_loading",
+            "summary": "Fetch associations when needed and keep the persistence context lifecycle in mind."
+          },
+          {
+            "name": "N+1 problem (VERY COMMON)",
+            "id": "n_1_problem_very_common",
+            "summary": "An initial query followed by one query per parent is an N+1 pattern. Confirm it in the SQL trace."
+          }
+        ],
+        "id": "spring_orm_and_jpa_integration"
+      },
+      {
+        "name": "Transaction Management",
+        "summary": "Choose transaction boundaries, then predict what commits, rolls back, or joins existing work.",
+        "subTopics": [
+          {
+            "name": "What is transaction management?",
+            "id": "what_is_transaction_management",
+            "summary": "A transaction groups operations into a unit with a defined commit or rollback outcome."
+          },
+          {
+            "name": "Declarative vs Programmatic Transactions",
+            "id": "declarative_vs_programmatic_transactions",
+            "summary": "Declare boundaries with annotations or wrap specific code using a transaction template."
+          },
+          {
+            "name": "@Transactional annotation",
+            "id": "transactional_annotation",
+            "summary": "Transactional tells Spring the requested transaction behavior at an eligible boundary."
+          },
+          {
+            "name": "@Transactional working internally",
+            "id": "transactional_working_internally",
+            "summary": "In proxy mode, an eligible call reaches transaction advice before it enters the target method."
+          },
+          {
+            "name": "Propagation and Isolation levels",
+            "id": "propagation_and_isolation_levels",
+            "summary": "Propagation decides which transaction runs the method. Isolation controls visibility between transactions."
+          },
+          {
+            "name": "Propagation types (REQUIRED, REQUIRES_NEW, etc.)",
+            "id": "propagation_types_required_requires_new_etc",
+            "summary": "Required joins or starts a transaction. RequiresNew starts a separate one and suspends an existing transaction where supported."
+          },
+          {
+            "name": "Rollback rules",
+            "id": "rollback_rules",
+            "summary": "Configure rollback rules to match failures that should undo the work."
+          },
+          {
+            "name": "Rollback - Checked vs Runtime exception",
+            "id": "rollback_checked_vs_runtime_exception",
+            "summary": "By default, Spring generally rolls back for unchecked exceptions and errors. Configure checked exceptions if required."
+          },
+          {
+            "name": "Why @Transactional doesn't work on private methods",
+            "id": "why_transactional_doesn_t_work_on_private_methods",
+            "summary": "Private methods cannot be intercepted by ordinary transaction proxies."
+          },
+          {
+            "name": "Why @Transactional doesn't work on internal method calls",
+            "id": "why_transactional_doesn_t_work_on_internal_method_calls",
+            "summary": "Calls from a method to another method on the same target bypass ordinary transaction proxy advice."
+          }
+        ],
+        "id": "transaction_management"
+      },
+      {
+        "name": "Exception Handling",
+        "summary": "Understand which persistence failures Spring translates and how callers should handle them.",
+        "subTopics": [
+          {
+            "name": "DataAccessException hierarchy",
+            "id": "dataaccessexception_hierarchy",
+            "summary": "DataAccessException provides an unchecked hierarchy for common data access failures."
+          },
+          {
+            "name": "Checked vs Runtime exceptions in Spring",
+            "id": "checked_vs_runtime_exceptions_in_spring",
+            "summary": "Spring's data access exceptions are unchecked. Configure transaction rules when a checked failure should roll back."
+          }
+        ],
+        "id": "exception_handling"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "spring_security_security_6_x",
+    "title": "Spring Security (Security 6.x)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Core Concepts",
+        "summary": "Trace identity, permissions, and request processing through Spring Security.",
+        "subTopics": [
+          {
+            "name": "Authentication vs Authorization",
+            "id": "authentication_vs_authorization",
+            "summary": "Authentication establishes identity. Authorization checks whether that identity may perform an action."
+          },
+          {
+            "name": "SecurityContext & SecurityContextHolder",
+            "id": "securitycontext_and_securitycontextholder",
+            "summary": "SecurityContext holds the current authentication. SecurityContextHolder gives code access to that context."
+          },
+          {
+            "name": "SecurityFilterChain & Filters",
+            "id": "securityfilterchain_and_filters",
+            "summary": "A matching SecurityFilterChain runs a configured sequence of security filters for the request."
+          },
+          {
+            "name": "Filter order importance",
+            "id": "filter_order_importance",
+            "summary": "Identity must be established before later authorization checks can make the intended decision."
+          },
+          {
+            "name": "UserDetailsService & PasswordEncoding (BCrypt)",
+            "id": "userdetailsservice_and_passwordencoding_bcrypt",
+            "summary": "Load user details and use a password encoder such as BCrypt to verify stored password hashes."
+          },
+          {
+            "name": "UserDetailsService flow",
+            "id": "userdetailsservice_flow",
+            "summary": "A provider loads user details, checks credentials, and creates an authenticated result on success."
+          }
+        ],
+        "id": "core_concepts"
+      },
+      {
+        "name": "Authentication Mechanisms",
+        "summary": "Compare credential handling, browser login, and token-based request authentication.",
+        "subTopics": [
+          {
+            "name": "Basic Auth & Form Login",
+            "id": "basic_auth_and_form_login",
+            "summary": "HTTP Basic sends credentials with requests. Form login typically authenticates once and uses a session."
+          },
+          {
+            "name": "JWT (JSON Web Tokens): Implementation & Best Practices",
+            "id": "jwt_json_web_tokens_implementation_and_best_practices",
+            "summary": "Treat a JWT as untrusted until its signature and expected claims have been validated."
+          },
+          {
+            "name": "Stateless vs Stateful authentication",
+            "id": "stateless_vs_stateful_authentication",
+            "summary": "Session-based authentication stores per-user state on the server. Stateless processing authenticates each request independently."
+          }
+        ],
+        "id": "authentication_mechanisms"
+      },
+      {
+        "name": "OAuth2 & OpenID Connect (OIDC)",
+        "summary": "Keep the OAuth roles straight and distinguish delegation from identity.",
+        "subTopics": [
+          {
+            "name": "Resource Server, Authorization Server, Client",
+            "id": "resource_server_authorization_server_client",
+            "summary": "The authorization server issues tokens, the resource server protects APIs, and the client requests access."
+          },
+          {
+            "name": "Social Login (Google, GitHub)",
+            "id": "social_login_google_github",
+            "summary": "Use OAuth login with a provider. OpenID Connect adds an identity layer where the provider supports it."
+          }
+        ],
+        "id": "oauth2_and_openid_connect_oidc"
+      },
+      {
+        "name": "Authorization",
+        "summary": "Map permissions to roles or authorities and check them at the right boundary.",
+        "subTopics": [
+          {
+            "name": "Role-based vs Authority-based access",
+            "id": "role_based_vs_authority_based_access",
+            "summary": "Use roles for groups of permissions and authorities for the actual grants checked by the application."
+          },
+          {
+            "name": "Role vs Authority",
+            "id": "role_vs_authority",
+            "summary": "A role is conventionally an authority with a role prefix. An authority can represent a finer-grained permission."
+          },
+          {
+            "name": "hasRole vs hasAuthority",
+            "id": "hasrole_vs_hasauthority",
+            "summary": "HasRole commonly applies a role prefix. HasAuthority checks the supplied authority string directly."
+          },
+          {
+            "name": "Method Level Security (@PreAuthorize, @PostAuthorize)",
+            "id": "method_level_security_preauthorize_postauthorize",
+            "summary": "Use PreAuthorize before invocation and PostAuthorize to check a returned result where appropriate."
+          }
+        ],
+        "id": "authorization"
+      },
+      {
+        "name": "Protection",
+        "summary": "Distinguish browser cross-origin access rules from requests made with automatically sent credentials.",
+        "subTopics": [
+          {
+            "name": "CORS (Cross-Origin Resource Sharing)",
+            "id": "cors_cross_origin_resource_sharing",
+            "summary": "CORS headers tell a browser whether scripts from another origin may read a response."
+          },
+          {
+            "name": "CORS - browser vs server perspective",
+            "id": "cors_browser_vs_server_perspective",
+            "summary": "The server returns CORS headers. The browser enforces them, including preflight checks when required."
+          },
+          {
+            "name": "CSRF (Cross-Site Request Forgery)",
+            "id": "csrf_cross_site_request_forgery",
+            "summary": "CSRF protection prevents unintended state changes sent with credentials the browser attaches automatically."
+          },
+          {
+            "name": "CSRF - what, why, when to disable",
+            "id": "csrf_what_why_when_to_disable",
+            "summary": "Base the CSRF decision on how credentials are sent. Cookie-authenticated endpoints still need protection."
+          }
+        ],
+        "id": "protection"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "spring_internals_and_advanced_topics_senior_level",
+    "title": "Spring Internals & Advanced Topics (Senior-level)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Spring Container & Initialization",
+        "summary": "Follow container startup from discovering definitions to creating and initializing beans.",
+        "subTopics": [
+          {
+            "name": "How Spring container starts",
+            "id": "how_spring_container_starts",
+            "summary": "The context loads definitions, applies factory post-processors, and prepares eligible singleton beans."
+          },
+          {
+            "name": "ClassPath scanning",
+            "id": "classpath_scanning",
+            "summary": "Component scanning looks for candidate classes under configured base packages."
+          },
+          {
+            "name": "Reflection usage in Spring",
+            "id": "reflection_usage_in_spring",
+            "summary": "Spring uses reflection and metadata to discover and invoke constructors, methods, and annotations."
+          }
+        ],
+        "id": "spring_container_and_initialization"
+      },
+      {
+        "name": "Design Principles & Best Practices",
+        "summary": "Use dependency boundaries and state ownership to keep services testable and safe to share.",
+        "subTopics": [
+          {
+            "name": "Why Spring prefers interfaces",
+            "id": "why_spring_prefers_interfaces",
+            "summary": "A service that depends on an interface can accept alternate implementations and test doubles."
+          },
+          {
+            "name": "Immutable beans and thread safety",
+            "id": "immutable_beans_and_thread_safety",
+            "summary": "Prefer immutable or stateless shared services and protect any mutable state that multiple threads can reach."
+          },
+          {
+            "name": "Memory impact of singleton beans",
+            "id": "memory_impact_of_singleton_beans",
+            "summary": "Singleton instances retain their reachable state for the life of the container unless released."
+          }
+        ],
+        "id": "design_principles_and_best_practices"
+      },
+      {
+        "name": "Spring Events",
+        "summary": "Send an application event and decide which components should react to it.",
+        "subTopics": [
+          {
+            "name": "ApplicationEvent and ApplicationListener",
+            "id": "applicationevent_and_applicationlistener",
+            "summary": "Publish an event through Spring and handle it with an ApplicationListener for the relevant type."
+          },
+          {
+            "name": "Custom Events",
+            "id": "custom_events",
+            "summary": "Use a focused event object to carry the context that interested components need."
+          },
+          {
+            "name": "@EventListener annotation",
+            "id": "eventlistener_annotation",
+            "summary": "Register a bean method with EventListener to react to events of a matching type."
+          }
+        ],
+        "id": "spring_events"
+      },
+      {
+        "name": "Spring Profiles & Environment",
+        "summary": "Select behavior by environment without spreading deployment checks through business code.",
+        "subTopics": [
+          {
+            "name": "@Profile usage",
+            "id": "profile_usage",
+            "summary": "Use Profile to include a bean or configuration only in selected environments."
+          },
+          {
+            "name": "Environment abstraction",
+            "id": "environment_abstraction",
+            "summary": "Use Environment to inspect active profiles and retrieve resolved properties."
+          },
+          {
+            "name": "PropertySource and Property resolution",
+            "id": "propertysource_and_property_resolution",
+            "summary": "Trace the same key through competing sources to understand why one value was selected."
+          }
+        ],
+        "id": "spring_profiles_and_environment"
+      }
+    ]
+  }
+]

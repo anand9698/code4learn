@@ -1,0 +1,52 @@
+{
+  "name": "Java SE, Jakarta EE, and Java ME",
+  "overview": "Three Java editions walk into an interview. Pick the right one for a desktop tool, a web service, or a small device, and explain why.",
+  "sections": [
+    {
+      "title": "Java SE for general-purpose programs",
+      "content": "Java SE is the base platform. It includes the language, JVM, and standard APIs you use for files, networking, concurrency, and more."
+    },
+    {
+      "title": "Jakarta EE for enterprise APIs",
+      "content": "Jakarta EE adds standards such as Servlet and Persistence. Jakarta EE 8 kept the older javax packages. Jakarta EE 9 moved its enterprise APIs to jakarta packages."
+    },
+    {
+      "title": "Java ME for constrained devices",
+      "content": "Java ME targets devices with limited resources and a compatible runtime. Choose it by checking the target device and the APIs the application needs.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/java_editions_se_ee_me/java-editions-overview.svg",
+          "alt": "Which Java platform fits?",
+          "caption": "Choose according to the deployment target and APIs you need."
+        }
+      ]
+    }
+  ],
+  "keyPoints": [
+    "Assign each example to an edition and name one feature it needs. Bonus point for spotting when a migration needs new dependencies as well as new imports."
+  ],
+  "references": [
+    {
+      "title": "Jakarta EE Specification",
+      "url": "https://jakarta.ee/specifications/"
+    },
+    {
+      "title": "Eclipse Foundation - Jakarta EE",
+      "url": "https://jakarta.ee/about/faq/"
+    },
+    {
+      "title": "Apache Tomcat supported specifications",
+      "url": "https://tomcat.apache.org/whichversion.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Which edition would you use for a standalone desktop tool?",
+      "answer": "Start with Java SE. Add libraries for any capabilities your tool needs."
+    },
+    {
+      "question": "Did every javax package become jakarta?",
+      "answer": "The Jakarta EE enterprise APIs changed. Java SE packages such as javax.sql kept their names."
+    }
+  ]
+}

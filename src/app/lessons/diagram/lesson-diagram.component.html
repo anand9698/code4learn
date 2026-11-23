@@ -1,0 +1,37 @@
+<figure>
+  <button type="button" class="preview" aria-haspopup="dialog" [attr.aria-label]="'Enlarge diagram: ' + image().alt" (click)="open()">
+    <span class="preview-art">
+      <img [src]="image().url" [alt]="image().alt">
+    </span>
+    <span class="preview-action" aria-hidden="true">Enlarge diagram ↗</span>
+  </button>
+  @if (image().caption; as caption) {
+    <figcaption>{{ caption }}</figcaption>
+  }
+</figure>
+
+<dialog #dialog aria-label="Diagram viewer" (click)="closeOnBackdrop($event)">
+  <div class="viewer-toolbar">
+    <div class="zoom-controls" role="group" aria-label="Diagram zoom">
+      <button type="button" [disabled]="zoom() === 100" aria-label="Zoom out" (click)="zoomBy(-50)">−</button>
+      <output aria-live="polite">{{ zoom() }}%</output>
+      <button type="button" [disabled]="zoom() === 400" aria-label="Zoom in" (click)="zoomBy(50)">+</button>
+      <button type="button" (click)="zoom.set(100)">Fit width</button>
+    </div>
+    <div class="viewer-actions">
+      <a class="download-diagram" [href]="image().url" download
+        aria-label="Download diagram as SVG" title="Download SVG">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12m-5-5 5 5 5-5M4 16v4h16v-4"/>
+        </svg>
+      </a>
+      <button type="button" autofocus (click)="close()">Close</button>
+    </div>
+  </div>
+  <div #viewport class="diagram-viewport" role="region" aria-label="Scrollable diagram" tabindex="0">
+    @if (dialog.open) {
+      <img [src]="image().url" [alt]="image().alt" [style.width.%]="zoom()">
+    }
+  </div>
+</dialog>

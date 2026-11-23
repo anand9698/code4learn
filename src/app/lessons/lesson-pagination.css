@@ -1,0 +1,29 @@
+.lesson-pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
+.lesson-pagination a {
+  display: grid;
+  gap: 3px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border: 1px solid var(--course-border, #d8d1ea);
+  border-radius: 8px;
+  background: var(--syllabus-light, #f4effc);
+  color: var(--syllabus-ink, #382363);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: transform var(--motion-fast) var(--motion-ease), background-color var(--motion-fast);
+}
+
+.lesson-pagination a:hover {
+  background: var(--syllabus-background, #e9dff9);
+}
+
+@media (hover: hover) {
+  .lesson-pagination a:hover {
+    transform: translateX(3px);
+  }
+}

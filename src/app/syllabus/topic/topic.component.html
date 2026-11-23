@@ -1,0 +1,44 @@
+@let subtopics = topic().subTopics ?? [];
+<ng-template #topicText>
+  <span class="item-text">
+    <span class="item-name">{{ topic().name }}</span>
+    @if (topic().summary; as summary) {
+      <span class="item-summary">{{ summary }}</span>
+    }
+  </span>
+</ng-template>
+
+@if (subtopics.length) {
+  <button
+    type="button"
+    class="topic-header"
+    [attr.aria-expanded]="expanded"
+    (click)="expanded = !expanded">
+    <ng-container *ngTemplateOutlet="topicText" />
+  </button>
+  <div class="motion-panel" [class.collapsed]="!expanded" [attr.inert]="expanded ? null : ''">
+    <div class="motion-panel-inner">
+      <div class="sub-topics-wrapper">
+        <a class="topic-overview-link" routerLink="/topic-detail" [queryParams]="lessonParams()">Topic overview</a>
+        <ul class="sub-topics">
+          @for (subtopic of subtopics; track subtopic.id) {
+            <li>
+              <a class="subtopic-item" routerLink="/subtopic-detail" [queryParams]="lessonParams(subtopic)">
+                <span class="item-text">
+                  <span class="item-name">{{ subtopic.name }}</span>
+                  @if (subtopic.summary; as summary) {
+                    <span class="item-summary">{{ summary }}</span>
+                  }
+                </span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+} @else {
+  <a class="topic-header" routerLink="/topic-detail" [queryParams]="lessonParams()">
+    <ng-container *ngTemplateOutlet="topicText" />
+  </a>
+}

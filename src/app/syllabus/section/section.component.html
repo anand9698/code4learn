@@ -1,0 +1,22 @@
+<div class="section" [class]="'theme-' + technologyId()">
+  <h2>
+    <button
+      type="button"
+      class="section-title"
+      [attr.aria-expanded]="expanded()"
+      (click)="toggled.emit()">
+      <span class="section-number">{{ section().id }}</span>
+      <span>{{ section().title }}</span>
+      <app-difficulty-badge [difficulty]="section().difficulty" />
+    </button>
+  </h2>
+  <div class="section-content motion-panel" [class.collapsed]="!expanded()" [attr.inert]="expanded() ? null : ''">
+    <div class="motion-panel-inner">
+      <ul class="topics">
+        @for (topic of section().topics; track topic.id) {
+          <li app-topic [topic]="topic" [section]="section()" [technologyId]="technologyId()"></li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1291 @@
+[
+  {
+    "id": 1,
+    "slug": "spring_boot_fundamentals",
+    "title": "Spring Boot Fundamentals",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Spring Boot vs Spring",
+        "summary": "See what Boot configures for a Spring application and which decisions still belong to you.",
+        "subTopics": [
+          {
+            "name": "Why Spring Boot was introduced",
+            "id": "why_spring_boot_was_introduced",
+            "summary": "Boot makes it easier to bootstrap and run a Spring application with sensible defaults."
+          },
+          {
+            "name": "Problems it solves",
+            "id": "problems_it_solves",
+            "summary": "Use starters, conditional configuration, and embedded servers to reduce setup work."
+          },
+          {
+            "name": "Spring vs Spring Boot (VERY COMMON)",
+            "id": "spring_vs_spring_boot_very_common",
+            "summary": "Spring provides the framework. Boot packages conventions and automatic configuration around it."
+          }
+        ],
+        "id": "spring_boot_vs_spring"
+      },
+      {
+        "name": "@SpringBootApplication",
+        "summary": "Understand what the main Boot annotation enables and where scanning starts.",
+        "subTopics": [
+          {
+            "name": "What it is internally",
+            "id": "what_it_is_internally",
+            "summary": "SpringBootApplication configures the application, enables auto-configuration, and starts component scanning."
+          },
+          {
+            "name": "Combination of: @Configuration, @ComponentScan, @EnableAutoConfiguration",
+            "id": "combination_of_configuration_componentscan_enableautoconfiguration",
+            "summary": "Its configuration role comes from SpringBootConfiguration, which is itself a Configuration annotation."
+          },
+          {
+            "name": "Why it should be placed in root package",
+            "id": "why_it_should_be_placed_in_root_package",
+            "summary": "Place the application class above the packages you want scanned, or set the boundaries explicitly."
+          }
+        ],
+        "id": "springbootapplication"
+      },
+      {
+        "name": "Starters",
+        "summary": "Pick a starter to bring in a coordinated set of dependencies for one capability.",
+        "subTopics": [
+          {
+            "name": "What are starters?",
+            "id": "what_are_starters",
+            "summary": "A starter is a dependency descriptor for a common application feature."
+          },
+          {
+            "name": "How spring-boot-starter-web works",
+            "id": "how_spring_boot_starter_web_works",
+            "summary": "The web starter brings together Spring MVC and related dependencies for a servlet web application."
+          },
+          {
+            "name": "Why starters reduce dependency conflicts",
+            "id": "why_starters_reduce_dependency_conflicts",
+            "summary": "Boot dependency management aligns supported library versions. Check overrides for compatibility."
+          }
+        ],
+        "id": "starters"
+      },
+      {
+        "name": "Configuration Management",
+        "summary": "Separate configuration from code and inspect which source wins.",
+        "subTopics": [
+          {
+            "name": "application.properties vs application.yml",
+            "id": "application_properties_vs_application_yml",
+            "summary": "Properties uses flat keys. YAML can group related keys in a nested document."
+          },
+          {
+            "name": "YAML advantages",
+            "id": "yaml_advantages",
+            "summary": "YAML makes nested configuration and lists easier to scan when indentation is consistent."
+          },
+          {
+            "name": "Profile-specific files",
+            "id": "profile_specific_files",
+            "summary": "Use application-profile files for values that apply only to an active profile."
+          },
+          {
+            "name": "Profiles (Dev, QA, Prod)",
+            "id": "profiles_dev_qa_prod",
+            "summary": "Keep common defaults in the base config and put environment-specific values in appropriate sources."
+          },
+          {
+            "name": "Externalized Configuration: Property Source Order",
+            "id": "externalized_configuration_property_priority_order_env_jvm_config_files",
+            "summary": "System properties can override OS variables, and OS variables can override config data. Command-line arguments can override these."
+          },
+          {
+            "name": "How environment variables override config",
+            "id": "how_environment_variables_override_config",
+            "summary": "Set a matching environment variable such as SERVER_PORT to override configuration from a file."
+          },
+          {
+            "name": "@Value vs @ConfigurationProperties",
+            "id": "value_vs_configurationproperties",
+            "summary": "Use Value for an individual value and ConfigurationProperties for a group of related settings."
+          },
+          {
+            "name": "@Value vs @ConfigurationProperties - Differences and When to use which",
+            "id": "value_vs_configurationproperties_differences_and_when_to_use_which",
+            "summary": "Choose structured binding when several values belong together and need validation."
+          },
+          {
+            "name": "Type safety advantages of @ConfigurationProperties",
+            "id": "type_safety_advantages_of_configurationproperties",
+            "summary": "ConfigurationProperties converts values to declared types and can validate the result at startup."
+          }
+        ],
+        "id": "configuration_management"
+      },
+      {
+        "name": "Developer Tools",
+        "summary": "Use development tools to shorten feedback cycles and know what your build generates.",
+        "subTopics": [
+          {
+            "name": "Spring Boot DevTools (Live Reload)",
+            "id": "spring_boot_devtools_live_reload",
+            "summary": "DevTools can restart on classpath changes and trigger browser reload when supported."
+          },
+          {
+            "name": "Lombok integration",
+            "id": "lombok_integration",
+            "summary": "Lombok generates code during compilation. Align annotation processing in the IDE and build."
+          }
+        ],
+        "id": "developer_tools"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "auto_configuration_top_interview_area",
+    "title": "Auto-Configuration (TOP INTERVIEW AREA)",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Auto-Configuration Internals",
+        "summary": "Predict what Boot creates by reading the conditions on its auto-configuration.",
+        "subTopics": [
+          {
+            "name": "What is auto-configuration?",
+            "id": "what_is_auto_configuration",
+            "summary": "Boot supplies configuration when matching dependencies, properties, and application conditions are present."
+          },
+          {
+            "name": "How Spring Boot decides which bean to create",
+            "id": "how_spring_boot_decides_which_bean_to_create",
+            "summary": "Conditions evaluate available types, existing beans, and configuration before registering candidates."
+          },
+          {
+            "name": "@ConditionalOnClass",
+            "id": "conditionalonclass",
+            "summary": "OnClass makes a configuration conditional on the presence of specified types."
+          },
+          {
+            "name": "@ConditionalOnMissingBean",
+            "id": "conditionalonmissingbean",
+            "summary": "OnMissingBean lets Boot provide a default when the application has not supplied a matching bean."
+          },
+          {
+            "name": "@ConditionalOnProperty",
+            "id": "conditionalonproperty",
+            "summary": "OnProperty evaluates a configured value before a bean or configuration is enabled."
+          }
+        ],
+        "id": "auto_configuration_internals"
+      },
+      {
+        "name": "Auto-Configuration Files",
+        "summary": "Find the registration file and follow how Boot discovers configuration candidates.",
+        "subTopics": [
+          {
+            "name": "Legacy Auto-Configuration Registration in spring.factories (Through Boot 2.7)",
+            "id": "spring_factories_boot_3",
+            "summary": "Older Boot versions used spring.factories under the EnableAutoConfiguration key. Boot 2.7 supported both formats."
+          },
+          {
+            "name": "AutoConfiguration.imports (Introduced in Boot 2.7)",
+            "id": "autoconfiguration_imports_boot_3",
+            "summary": "AutoConfiguration.imports lists candidate classes and is the registration format for Boot 3 and later."
+          },
+          {
+            "name": "How auto-config classes are loaded",
+            "id": "how_auto_config_classes_are_loaded",
+            "summary": "Boot reads candidate names from classpath metadata, then conditions determine what applies."
+          }
+        ],
+        "id": "auto_configuration_files"
+      },
+      {
+        "name": "Disable / Customize Auto-Config",
+        "summary": "Replace one default or opt out of an entire auto-configuration when needed.",
+        "subTopics": [
+          {
+            "name": "exclude attribute",
+            "id": "exclude_attribute",
+            "summary": "Use the application annotation's exclude setting to skip a specific auto-configuration class."
+          },
+          {
+            "name": "spring.autoconfigure.exclude",
+            "id": "spring_autoconfigure_exclude",
+            "summary": "Set spring.autoconfigure.exclude when the exclusions belong in external configuration."
+          },
+          {
+            "name": "Overriding auto-configured beans",
+            "id": "overriding_auto_configured_beans",
+            "summary": "Supply a custom bean when the relevant Boot configuration is designed to back off."
+          }
+        ],
+        "id": "disable_customize_auto_config"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "spring_boot_startup_lifecycle",
+    "title": "Spring Boot Startup Lifecycle",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Application Startup",
+        "summary": "Trace launch from environment preparation to a refreshed context and ready application.",
+        "subTopics": [
+          {
+            "name": "What happens during SpringApplication.run()",
+            "id": "what_happens_during_springapplication_run",
+            "summary": "SpringApplication prepares the environment, creates and refreshes the context, and invokes configured runners."
+          },
+          {
+            "name": "Order of execution",
+            "id": "order_of_execution",
+            "summary": "Read the startup milestones in order and find where configuration, context refresh, and runners fit."
+          },
+          {
+            "name": "When beans are created",
+            "id": "when_beans_are_created",
+            "summary": "Most regular singleton instances are created during context refresh unless their creation is deferred."
+          }
+        ],
+        "id": "application_startup"
+      },
+      {
+        "name": "Runners",
+        "summary": "Run startup tasks with the argument format and ordering they need.",
+        "subTopics": [
+          {
+            "name": "CommandLineRunner vs ApplicationRunner",
+            "id": "commandlinerunner_vs_applicationrunner",
+            "summary": "CommandLineRunner receives raw strings. ApplicationRunner receives parsed ApplicationArguments."
+          },
+          {
+            "name": "Use cases",
+            "id": "use_cases",
+            "summary": "Use a runner for startup work such as checking required data or running a command-line job."
+          },
+          {
+            "name": "Execution order",
+            "id": "execution_order",
+            "summary": "Use Ordered or Order when multiple runners must run in a deliberate order."
+          }
+        ],
+        "id": "runners"
+      },
+      {
+        "name": "Embedded Server",
+        "summary": "Choose a web server, then configure how and where it listens.",
+        "subTopics": [
+          {
+            "name": "Embedded Tomcat / Jetty / Netty",
+            "id": "embedded_tomcat_jetty_netty",
+            "summary": "Servlet stacks can use servers such as Tomcat or Jetty. Reactive stacks commonly use Reactor Netty."
+          },
+          {
+            "name": "How Boot starts server internally",
+            "id": "how_boot_starts_server_internally",
+            "summary": "Boot creates the server through its web server factory while initializing the web context."
+          },
+          {
+            "name": "How to change port & server type",
+            "id": "how_to_change_port_and_server_type",
+            "summary": "Set server.port for the port and choose server dependencies that match the web stack."
+          }
+        ],
+        "id": "embedded_server"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "data_access_and_persistence",
+    "title": "Data Access & Persistence",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Spring JDBC",
+        "summary": "Execute SQL directly with Spring's JDBC templates and parameter binding.",
+        "subTopics": [
+          {
+            "name": "JdbcTemplate & NamedParameterJdbcTemplate",
+            "id": "jdbctemplate_and_namedparameterjdbctemplate",
+            "summary": "Use JdbcTemplate for positional parameters or NamedParameterJdbcTemplate for readable named inputs."
+          }
+        ],
+        "id": "spring_jdbc"
+      },
+      {
+        "name": "Spring Data JPA (Hibernate)",
+        "summary": "Map entities, write repository queries, and inspect how fetching affects the SQL.",
+        "subTopics": [
+          {
+            "name": "Why repositories don't need implementation",
+            "id": "why_repositories_don_t_need_implementation",
+            "summary": "Spring Data creates a repository proxy with standard operations and implementations for supported query methods."
+          },
+          {
+            "name": "Entity Mapping (@Entity, @Table, @Id, @GeneratedValue)",
+            "id": "entity_mapping_entity_table_id_generatedvalue",
+            "summary": "Mark persistent types and identifiers and describe table mappings or key generation as needed."
+          },
+          {
+            "name": "Entity scanning",
+            "id": "entity_scanning",
+            "summary": "Ensure entity packages fall within Boot's scan or define the boundary with EntityScan."
+          },
+          {
+            "name": "Auto-DDL (ddl-auto)",
+            "id": "auto_ddl_ddl_auto",
+            "summary": "Use ddl-auto deliberately and prefer reviewed migrations for production schema changes."
+          },
+          {
+            "name": "Repositories (CrudRepository, JpaRepository)",
+            "id": "repositories_crudrepository_jparepository",
+            "summary": "Choose a repository interface that exposes the persistence operations your application needs."
+          },
+          {
+            "name": "CrudRepository vs JpaRepository",
+            "id": "crudrepository_vs_jparepository",
+            "summary": "CrudRepository offers basic operations. JpaRepository adds JPA-oriented methods such as flushing."
+          },
+          {
+            "name": "Query Methods (Derived queries, @Query, Native Queries)",
+            "id": "query_methods_derived_queries_query_native_queries",
+            "summary": "Use derived methods for simple queries, JPQL for entity queries, and native SQL when needed."
+          },
+          {
+            "name": "Derived query method rules",
+            "id": "derived_query_method_rules",
+            "summary": "Derived names describe filters and ordering using property paths and supported keywords."
+          },
+          {
+            "name": "Relationships (OneToOne, OneToMany, ManyToMany)",
+            "id": "relationships_onetoone_onetomany_manytomany",
+            "summary": "Define ownership and cardinality explicitly so updates and fetches behave as intended."
+          },
+          {
+            "name": "Lazy vs Eager loading",
+            "id": "lazy_vs_eager_loading",
+            "summary": "Fetching controls when related data is loaded. Confirm the effect on SQL and data size."
+          },
+          {
+            "name": "Pagination & Sorting",
+            "id": "pagination_and_sorting",
+            "summary": "Use a pageable and stable sort. Choose Page or Slice based on whether callers need totals."
+          },
+          {
+            "name": "N+1 Problem - What it is",
+            "id": "n_1_problem_what_it_is",
+            "summary": "N+1 means fetching a list triggers a separate associated-data query for each item."
+          },
+          {
+            "name": "N+1 Problem - How to identify",
+            "id": "n_1_problem_how_to_identify",
+            "summary": "Look for repeated SQL statements with different identifiers in a query trace."
+          },
+          {
+            "name": "N+1 Problem - Solutions (fetch join, EntityGraph)",
+            "id": "n_1_problem_solutions_fetch_join_entitygraph",
+            "summary": "Fetch needed data deliberately with a fetch join, an entity graph, or a suitable projection."
+          }
+        ],
+        "id": "spring_data_jpa_hibernate"
+      },
+      {
+        "name": "Transaction Management (INTERVIEW FAVORITE)",
+        "summary": "Keep transaction decisions at clear service boundaries and test rollback behavior.",
+        "subTopics": [
+          {
+            "name": "@Transactional - How it works internally",
+            "id": "transactional_how_it_works_internally",
+            "summary": "An eligible proxy call applies transaction configuration before invoking the target method."
+          },
+          {
+            "name": "Why @Transactional uses AOP",
+            "id": "why_transactional_uses_aop",
+            "summary": "Transaction advice handles setup and completion around a method call that crosses the proxy."
+          },
+          {
+            "name": "Propagation types (REQUIRED, REQUIRES_NEW)",
+            "id": "propagation_types_required_requires_new",
+            "summary": "Required joins or starts work. RequiresNew starts a separate transaction."
+          },
+          {
+            "name": "Isolation levels",
+            "id": "isolation_levels",
+            "summary": "Isolation controls what concurrent transactions can see. Available behavior depends on the database."
+          },
+          {
+            "name": "Rollback Rules - Checked vs Runtime exception",
+            "id": "rollback_rules_checked_vs_runtime_exception",
+            "summary": "Unchecked exceptions and errors default to rollback in typical Spring configuration. Checked failures need a rule when appropriate."
+          },
+          {
+            "name": "How to force rollback",
+            "id": "how_to_force_rollback",
+            "summary": "Throw an exception covered by rollback rules or mark the active transaction rollback-only when needed."
+          },
+          {
+            "name": "Common Pitfalls - Why @Transactional doesn't work on private methods",
+            "id": "common_pitfalls_why_transactional_doesn_t_work_on_private_methods",
+            "summary": "A private method is not an eligible entry point for ordinary transactional proxies."
+          },
+          {
+            "name": "Common Pitfalls - Why @Transactional doesn't work on internal method calls",
+            "id": "common_pitfalls_why_transactional_doesn_t_work_on_internal_method_calls",
+            "summary": "Self-invocation bypasses the proxy. Put the transaction boundary where another bean calls it."
+          },
+          {
+            "name": "Proxy limitation explanation",
+            "id": "proxy_limitation_explanation",
+            "summary": "A proxy intercepts eligible external calls. The invocation path matters as much as the annotation."
+          }
+        ],
+        "id": "transaction_management_interview_favorite"
+      },
+      {
+        "name": "NoSQL Integration",
+        "summary": "Choose a document or in-memory data store for the access pattern you need.",
+        "subTopics": [
+          {
+            "name": "Spring Data MongoDB",
+            "id": "spring_data_mongodb",
+            "summary": "Map Java objects to MongoDB documents and query them through Spring Data."
+          },
+          {
+            "name": "Spring Data Redis (Caching & Pub/Sub)",
+            "id": "spring_data_redis_caching_and_pub_sub",
+            "summary": "Use Redis for expiring cached values or publish/subscribe, with explicit serialization and expiry choices."
+          }
+        ],
+        "id": "nosql_integration"
+      },
+      {
+        "name": "Database Migration",
+        "summary": "Track database changes as reviewed migrations that can run consistently across environments.",
+        "subTopics": [
+          {
+            "name": "Flyway or Liquibase integration",
+            "id": "flyway_or_liquibase_integration",
+            "summary": "Flyway and Liquibase record which migrations were applied and help reproduce the database schema."
+          }
+        ],
+        "id": "database_migration"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "web_and_rest_api_development",
+    "title": "Web & REST API Development",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Controllers",
+        "summary": "Map HTTP requests to clear controller methods with explicit input sources.",
+        "subTopics": [
+          {
+            "name": "@RestController vs @Controller",
+            "id": "restcontroller_vs_controller",
+            "summary": "RestController defaults to writing response bodies. Controller can return views when configured for MVC."
+          },
+          {
+            "name": "@RequestMapping vs @GetMapping",
+            "id": "requestmapping_vs_getmapping",
+            "summary": "Use RequestMapping for general mapping and GetMapping for a GET-only handler."
+          },
+          {
+            "name": "@PathVariable vs @RequestParam",
+            "id": "pathvariable_vs_requestparam",
+            "summary": "PathVariable reads the route segment. RequestParam reads a named request parameter."
+          },
+          {
+            "name": "@RequestBody vs @ModelAttribute",
+            "id": "requestbody_vs_modelattribute",
+            "summary": "Bind serialized payloads with RequestBody and bind request parameters to objects with ModelAttribute."
+          }
+        ],
+        "id": "controllers"
+      },
+      {
+        "name": "Response Handling",
+        "summary": "Make response status, headers, and body reflect the operation's outcome.",
+        "subTopics": [
+          {
+            "name": "ResponseEntity",
+            "id": "responseentity",
+            "summary": "Use ResponseEntity when a handler needs explicit control over body, headers, or status."
+          },
+          {
+            "name": "HTTP status codes best practices",
+            "id": "http_status_codes_best_practices",
+            "summary": "Choose HTTP status by outcome, such as 201 for creation or 404 for a missing resource."
+          }
+        ],
+        "id": "response_handling"
+      },
+      {
+        "name": "Exception Handling",
+        "summary": "Return predictable error responses from local or shared handlers.",
+        "subTopics": [
+          {
+            "name": "@ExceptionHandler",
+            "id": "exceptionhandler",
+            "summary": "Use ExceptionHandler to map an exception to a safe response body and status."
+          },
+          {
+            "name": "@ControllerAdvice",
+            "id": "controlleradvice",
+            "summary": "Use ControllerAdvice to reuse exception handlers across controllers."
+          },
+          {
+            "name": "Global vs local exception handling",
+            "id": "global_vs_local_exception_handling",
+            "summary": "Handle endpoint-specific cases locally and centralize shared error formats and mappings."
+          }
+        ],
+        "id": "exception_handling"
+      },
+      {
+        "name": "Advanced REST",
+        "summary": "Validate inputs, negotiate representations, and handle binary data deliberately.",
+        "subTopics": [
+          {
+            "name": "Bean Validation (Hibernate Validator, @Valid, @NotNull, @Size)",
+            "id": "bean_validation_hibernate_validator_valid_notnull_size",
+            "summary": "Use Valid to trigger validation for incoming data and constraints to describe what is accepted."
+          },
+          {
+            "name": "HATEOAS (Hypermedia as the Engine of Application State)",
+            "id": "hateoas_hypermedia_as_the_engine_of_application_state",
+            "summary": "Include links that expose useful related resources and actions to API clients."
+          },
+          {
+            "name": "Content Negotiation (JSON vs XML)",
+            "id": "content_negotiation_json_vs_xml",
+            "summary": "Use Accept to negotiate response representations and Content-Type to describe the submitted payload."
+          },
+          {
+            "name": "File Upload/Download",
+            "id": "file_upload_download",
+            "summary": "Use multipart handling for uploads and appropriate media types and headers for downloads."
+          }
+        ],
+        "id": "advanced_rest"
+      },
+      {
+        "name": "API Documentation",
+        "summary": "Describe API operations and schemas so clients can discover how to call them.",
+        "subTopics": [
+          {
+            "name": "OpenAPI 3.0 / Swagger (SpringDoc)",
+            "id": "openapi_3_0_swagger_springdoc",
+            "summary": "SpringDoc can generate an OpenAPI document and expose an interactive Swagger UI."
+          }
+        ],
+        "id": "api_documentation"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "spring_boot_security_high_demand",
+    "title": "Spring Boot Security (HIGH DEMAND)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Core Concepts",
+        "summary": "Follow a request through identity checks and permission decisions.",
+        "subTopics": [
+          {
+            "name": "Authentication vs Authorization",
+            "id": "authentication_vs_authorization",
+            "summary": "Authentication identifies the caller. Authorization determines which actions that identity may perform."
+          },
+          {
+            "name": "Stateless vs Stateful auth",
+            "id": "stateless_vs_stateful_auth",
+            "summary": "Sessions retain authentication state on the server. Stateless requests carry their credentials each time."
+          },
+          {
+            "name": "SecurityFilterChain",
+            "id": "securityfilterchain",
+            "summary": "A SecurityFilterChain applies configured security filters to matching requests."
+          }
+        ],
+        "id": "core_concepts"
+      },
+      {
+        "name": "JWT with Spring Boot",
+        "summary": "Trace a bearer token from the incoming header through validation to a security context.",
+        "subTopics": [
+          {
+            "name": "Why JWT is stateless",
+            "id": "why_jwt_is_stateless",
+            "summary": "A signed token can carry claims with each request, allowing authentication without a server-side login session."
+          },
+          {
+            "name": "Filter flow",
+            "id": "filter_flow",
+            "summary": "A bearer filter reads the token and passes it to authentication before authorization runs."
+          },
+          {
+            "name": "Where token is validated",
+            "id": "where_token_is_validated",
+            "summary": "The configured decoder or provider verifies the signature and expected token claims before accepting identity."
+          }
+        ],
+        "id": "jwt_with_spring_boot"
+      },
+      {
+        "name": "Method Security",
+        "summary": "Apply permissions before a method runs or after its return value is available.",
+        "subTopics": [
+          {
+            "name": "@PreAuthorize",
+            "id": "preauthorize",
+            "summary": "PreAuthorize evaluates a permission expression before invoking an eligible method."
+          },
+          {
+            "name": "@PostAuthorize",
+            "id": "postauthorize",
+            "summary": "PostAuthorize can check the returned value before it is delivered to the caller."
+          },
+          {
+            "name": "Role vs Authority",
+            "id": "role_vs_authority",
+            "summary": "Authorities are permission strings. Roles commonly group privileges under a role prefix."
+          }
+        ],
+        "id": "method_security"
+      },
+      {
+        "name": "CSRF & CORS",
+        "summary": "Choose cross-origin and CSRF policies based on browser behavior and credential handling.",
+        "subTopics": [
+          {
+            "name": "What CSRF is",
+            "id": "what_csrf_is",
+            "summary": "CSRF can trigger an unintended action when the browser automatically includes an authenticated user's credentials."
+          },
+          {
+            "name": "When REST APIs Need CSRF Protection",
+            "id": "why_csrf_disabled_for_rest_apis",
+            "summary": "An API using only explicit bearer headers has different exposure from one using cookies. Assess its credential flow before disabling protection."
+          },
+          {
+            "name": "Browser-side vs server-side CORS",
+            "id": "browser_side_vs_server_side_cors",
+            "summary": "The server advertises allowed origins and methods. Browsers enforce that policy across origins."
+          }
+        ],
+        "id": "csrf_and_cors"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "microservices_and_spring_cloud",
+    "title": "Microservices & Spring Cloud",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Service Discovery",
+        "summary": "Discover service instances dynamically as their addresses change.",
+        "subTopics": [
+          {
+            "name": "Netflix Eureka / HashiCorp Consul",
+            "id": "netflix_eureka_hashicorp_consul",
+            "summary": "Eureka or Consul can provide a registry that clients use to find available service instances."
+          }
+        ],
+        "id": "service_discovery"
+      },
+      {
+        "name": "API Gateway",
+        "summary": "Centralize route selection and common request policies at the edge.",
+        "subTopics": [
+          {
+            "name": "Spring Cloud Gateway (Routing, Filtering, Rate Limiting)",
+            "id": "spring_cloud_gateway_routing_filtering_rate_limiting",
+            "summary": "Spring Cloud Gateway matches routes and applies filters, such as rate limits, before forwarding requests."
+          }
+        ],
+        "id": "api_gateway"
+      },
+      {
+        "name": "Config Management",
+        "summary": "Serve application configuration from a central source while keeping secrets protected.",
+        "subTopics": [
+          {
+            "name": "Spring Cloud Config Server (Centralized configuration)",
+            "id": "spring_cloud_config_server_centralized_configuration",
+            "summary": "Config Server can expose shared, versioned settings to application clients."
+          }
+        ],
+        "id": "config_management"
+      },
+      {
+        "name": "Resilience & Fault Tolerance",
+        "summary": "Choose resilience controls that match a failure mode and keep retries bounded.",
+        "subTopics": [
+          {
+            "name": "Resilience4j (Circuit Breaker, Retry, Rate Limiter, Bulkhead)",
+            "id": "resilience4j_circuit_breaker_retry_rate_limiter_bulkhead",
+            "summary": "Use a circuit breaker to stop repeated failures, a retry for transient errors, and a bulkhead to isolate capacity."
+          }
+        ],
+        "id": "resilience_and_fault_tolerance"
+      },
+      {
+        "name": "Distributed Tracing",
+        "summary": "Follow one request across services by propagating trace context.",
+        "subTopics": [
+          {
+            "name": "Micrometer Tracing (formerly Sleuth) + Zipkin/Brave",
+            "id": "micrometer_tracing_formerly_sleuth_zipkin_brave",
+            "summary": "Micrometer Tracing records spans and can export them using compatible systems such as Zipkin."
+          }
+        ],
+        "id": "distributed_tracing"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "spring_ai_generative_ai",
+    "title": "Spring AI (Generative AI)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Introduction to Generative AI",
+        "summary": "Understand what a language model can do and where application checks are still needed.",
+        "subTopics": [
+          {
+            "name": "Large Language Models (LLMs) concepts",
+            "id": "large_language_models_llms_concepts",
+            "summary": "LLMs predict tokens from context. Evaluate output for accuracy, relevance, and consistency."
+          }
+        ],
+        "id": "introduction_to_generative_ai"
+      },
+      {
+        "name": "Spring AI Core",
+        "summary": "Send prompts through a Java client and turn responses into data your application can check.",
+        "subTopics": [
+          {
+            "name": "Chat Client API: Interacting with OpenAI, Azure OpenAI, Ollama, HuggingFace",
+            "id": "chat_client_api_interacting_with_openai_azure_openai_ollama_huggingface",
+            "summary": "ChatClient gives Java code a fluent interface for requesting model responses across configured integrations."
+          },
+          {
+            "name": "Prompts: Prompt Templates, Prompt Engineering within Java",
+            "id": "prompts_prompt_templates_prompt_engineering_within_java",
+            "summary": "Use templates to separate reusable instructions from request-specific values."
+          },
+          {
+            "name": "Output Parsers: Converting AI text responses into Java Objects (POJOs)",
+            "id": "output_parsers_converting_ai_text_responses_into_java_objects_pojos",
+            "summary": "Convert structured model output into Java objects and validate it before using it."
+          }
+        ],
+        "id": "spring_ai_core"
+      },
+      {
+        "name": "Embeddings & Vector Databases",
+        "summary": "Represent text as vectors and retrieve material related to a query.",
+        "subTopics": [
+          {
+            "name": "Text Embeddings models",
+            "id": "text_embeddings_models",
+            "summary": "An embedding model represents text as numeric vectors that support similarity comparisons."
+          },
+          {
+            "name": "Vector Store integration (PGVector, Pinecone, Milvus, Redis)",
+            "id": "vector_store_integration_pgvector_pinecone_milvus_redis",
+            "summary": "Store vectors with source metadata and choose an integration that fits query and filtering requirements."
+          }
+        ],
+        "id": "embeddings_and_vector_databases"
+      },
+      {
+        "name": "RAG (Retrieval Augmented Generation)",
+        "summary": "Retrieve source material before generating an answer so the model has relevant context.",
+        "subTopics": [
+          {
+            "name": "Document Readers (PDF, Text, JSON)",
+            "id": "document_readers_pdf_text_json",
+            "summary": "Load documents into a consistent representation with source metadata before indexing them."
+          },
+          {
+            "name": "Token Splitters",
+            "id": "token_splitters",
+            "summary": "Split text into chunks that conserve context while fitting model and retrieval limits."
+          },
+          {
+            "name": "Contextual search implementation",
+            "id": "contextual_search_implementation",
+            "summary": "Retrieve relevant chunks for the question and include them in the prompt with useful source context."
+          }
+        ],
+        "id": "rag_retrieval_augmented_generation"
+      },
+      {
+        "name": "Advanced AI",
+        "summary": "Connect models to application tools or image services for tasks beyond text generation.",
+        "subTopics": [
+          {
+            "name": "Function Calling (Letting AI call your Java methods)",
+            "id": "function_calling_letting_ai_call_your_java_methods",
+            "summary": "Register a tool with a clear input contract and validate arguments before invoking a Java method."
+          },
+          {
+            "name": "Image Generation (DALL-E, Stability AI)",
+            "id": "image_generation_dall_e_stability_ai",
+            "summary": "Use an image generation integration to submit prompts and handle the returned image data."
+          }
+        ],
+        "id": "advanced_ai"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "messaging_and_event_driven_architecture",
+    "title": "Messaging & Event-Driven Architecture",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "JMS (Java Message Service)",
+        "summary": "Send messages through the standard Jakarta Messaging API and choose durable delivery as needed.",
+        "subTopics": [
+          {
+            "name": "ActiveMQ integration",
+            "id": "activemq_integration",
+            "summary": "Configure a JMS-compatible broker such as ActiveMQ and use Spring abstractions to send or receive messages."
+          }
+        ],
+        "id": "jms_java_message_service"
+      },
+      {
+        "name": "Apache Kafka",
+        "summary": "Publish and process records with Kafka's partitions and consumer groups.",
+        "subTopics": [
+          {
+            "name": "Spring for Apache Kafka",
+            "id": "spring_for_apache_kafka",
+            "summary": "Spring for Apache Kafka provides templates and listener containers for common producer and consumer tasks."
+          },
+          {
+            "name": "Producers, Consumers, Consumer Groups",
+            "id": "producers_consumers_consumer_groups",
+            "summary": "Producers write records, consumers read them, and group members share partitions."
+          }
+        ],
+        "id": "apache_kafka"
+      },
+      {
+        "name": "RabbitMQ",
+        "summary": "Route messages to RabbitMQ queues using exchange types and routing keys.",
+        "subTopics": [
+          {
+            "name": "Exchanges, Queues, Routing Keys",
+            "id": "exchanges_queues_routing_keys",
+            "summary": "Publish to an exchange, then use bindings and routing keys to decide which queues receive the message."
+          }
+        ],
+        "id": "rabbitmq"
+      },
+      {
+        "name": "Spring Cloud Stream",
+        "summary": "Keep application message handlers separate from the broker integration they use.",
+        "subTopics": [
+          {
+            "name": "Binder abstraction (Switch between Kafka/RabbitMQ easily)",
+            "id": "binder_abstraction_switch_between_kafka_rabbitmq_easily",
+            "summary": "A binder connects functions to a broker. Broker-specific delivery and ordering guarantees still need review."
+          }
+        ],
+        "id": "spring_cloud_stream"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "spring_batch_and_scheduling",
+    "title": "Spring Batch & Scheduling",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Scheduling",
+        "summary": "Schedule periodic work and choose a scheduler based on durability and coordination needs.",
+        "subTopics": [
+          {
+            "name": "@Scheduled (FixedRate, FixedDelay, Cron expressions)",
+            "id": "scheduled_fixedrate_fixeddelay_cron_expressions",
+            "summary": "FixedRate measures between start times, FixedDelay waits after completion, and cron follows a calendar schedule."
+          },
+          {
+            "name": "Quartz Scheduler integration",
+            "id": "quartz_scheduler_integration",
+            "summary": "Use Quartz for more involved schedules and configured persistent job state."
+          }
+        ],
+        "id": "scheduling"
+      },
+      {
+        "name": "Spring Batch",
+        "summary": "Process large inputs with restartable jobs, explicit chunks, and measured concurrency.",
+        "subTopics": [
+          {
+            "name": "Job, Step, JobRepository",
+            "id": "job_step_jobrepository",
+            "summary": "A Job contains steps, and the JobRepository records execution metadata and restart state."
+          },
+          {
+            "name": "ItemReader, ItemProcessor, ItemWriter",
+            "id": "itemreader_itemprocessor_itemwriter",
+            "summary": "Read items, optionally transform them, and write the results through three focused contracts."
+          },
+          {
+            "name": "Chunk-oriented processing",
+            "id": "chunk_oriented_processing",
+            "summary": "Process and write batches of items within transaction boundaries sized for the workload."
+          },
+          {
+            "name": "Error handling (Skip, Retry policies)",
+            "id": "error_handling_skip_retry_policies",
+            "summary": "Retry transient failures and skip selected bad items when the job's rules allow it."
+          },
+          {
+            "name": "Parallel processing & Partitioning",
+            "id": "parallel_processing_and_partitioning",
+            "summary": "Partition work into independent units and check whether shared components are safe to use concurrently."
+          }
+        ],
+        "id": "spring_batch"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "reactive_programming_webflux",
+    "title": "Reactive Programming (WebFlux)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Project Reactor",
+        "summary": "Build reactive pipelines that handle both results and demand.",
+        "subTopics": [
+          {
+            "name": "Mono vs Flux",
+            "id": "mono_vs_flux",
+            "summary": "Mono has zero or one item. Flux can emit zero or many items."
+          },
+          {
+            "name": "Backpressure",
+            "id": "backpressure",
+            "summary": "Backpressure lets a subscriber signal how many items it is ready to receive."
+          }
+        ],
+        "id": "project_reactor"
+      },
+      {
+        "name": "Spring WebFlux",
+        "summary": "Keep a reactive request path non-blocking from HTTP through database access.",
+        "subTopics": [
+          {
+            "name": "Non-blocking REST APIs",
+            "id": "non_blocking_rest_apis",
+            "summary": "Compose asynchronous publishers for HTTP handlers and avoid blocking calls on event-loop threads."
+          },
+          {
+            "name": "Netty Server",
+            "id": "netty_server",
+            "summary": "Reactor Netty uses event loops to handle network I/O for many concurrent connections."
+          },
+          {
+            "name": "Reactive Database Access (R2DBC)",
+            "id": "reactive_database_access_r2dbc",
+            "summary": "Use an R2DBC driver and compatible access APIs for reactive relational database operations."
+          }
+        ],
+        "id": "spring_webflux"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "spring_boot_testing",
+    "title": "Spring Boot Testing",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Testing Types",
+        "summary": "Choose the smallest test scope that proves the behavior you care about.",
+        "subTopics": [
+          {
+            "name": "Unit vs Integration testing",
+            "id": "unit_vs_integration_testing",
+            "summary": "Unit tests check an isolated behavior. Integration tests check how the real pieces work together."
+          }
+        ],
+        "id": "testing_types"
+      },
+      {
+        "name": "Unit Testing",
+        "summary": "Test a class's behavior with explicit inputs, assertions, and focused test doubles.",
+        "subTopics": [
+          {
+            "name": "JUnit 5 & Mockito (Mocking dependencies)",
+            "id": "junit_5_and_mockito_mocking_dependencies",
+            "summary": "Use JUnit assertions for outcomes and Mockito when a real dependency would obscure the test."
+          }
+        ],
+        "id": "unit_testing"
+      },
+      {
+        "name": "Integration Testing",
+        "summary": "Load the full context or a smaller test slice, depending on the boundary you need to prove.",
+        "subTopics": [
+          {
+            "name": "@SpringBootTest",
+            "id": "springboottest",
+            "summary": "SpringBootTest loads the application context for integration tests and can start a server when configured."
+          },
+          {
+            "name": "Test Slices (@WebMvcTest, @DataJpaTest)",
+            "id": "test_slices_webmvctest_datajpatest",
+            "summary": "WebMvcTest focuses on the web layer. DataJpaTest focuses on JPA components."
+          }
+        ],
+        "id": "integration_testing"
+      },
+      {
+        "name": "Mocking",
+        "summary": "Replace or observe collaborators selectively so tests stay clear.",
+        "subTopics": [
+          {
+            "name": "Mockito basics",
+            "id": "mockito_basics",
+            "summary": "Stub a result to set up a scenario, then verify interactions only when they are part of the contract."
+          },
+          {
+            "name": "MockBean vs SpyBean",
+            "id": "mockbean_vs_spybean",
+            "summary": "A mock replaces behavior. A spy wraps a real instance. In newer Spring tests, use MockitoBean or MockitoSpyBean."
+          }
+        ],
+        "id": "mocking"
+      },
+      {
+        "name": "Advanced Testing",
+        "summary": "Exercise external boundaries with disposable services or predictable HTTP responses.",
+        "subTopics": [
+          {
+            "name": "Testcontainers (Spinning up real DBs/Kafka in Docker for tests)",
+            "id": "testcontainers_spinning_up_real_dbs_kafka_in_docker_for_tests",
+            "summary": "Testcontainers starts disposable dependencies so tests can exercise real drivers and protocols."
+          },
+          {
+            "name": "WireMock (Mocking external APIs)",
+            "id": "wiremock_mocking_external_apis",
+            "summary": "WireMock serves controlled HTTP responses for tests of clients and error handling."
+          }
+        ],
+        "id": "advanced_testing"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "observability_and_production_ready_actuator",
+    "title": "Observability & Production Ready (Actuator)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Spring Boot Actuator",
+        "summary": "Use operational endpoints to inspect application health and metrics safely.",
+        "subTopics": [
+          {
+            "name": "Important endpoints: /health, /metrics, /info",
+            "id": "important_endpoints_health_metrics_info",
+            "summary": "Check health for status, metrics for measurements, and info for published metadata."
+          },
+          {
+            "name": "Custom health indicators",
+            "id": "custom_health_indicators",
+            "summary": "A custom HealthIndicator reports dependency status with details appropriate for the endpoint's audience."
+          }
+        ],
+        "id": "spring_boot_actuator"
+      },
+      {
+        "name": "Monitoring",
+        "summary": "Collect application measurements and turn them into observable trends.",
+        "subTopics": [
+          {
+            "name": "Micrometer basics",
+            "id": "micrometer_basics",
+            "summary": "Micrometer provides APIs for counters, timers, and gauges with tags."
+          },
+          {
+            "name": "Prometheus & Grafana overview",
+            "id": "prometheus_and_grafana_overview",
+            "summary": "Prometheus collects metrics and Grafana can graph and alert on their trends."
+          }
+        ],
+        "id": "monitoring"
+      },
+      {
+        "name": "Logging",
+        "summary": "Produce consistent application logs and make them searchable across instances.",
+        "subTopics": [
+          {
+            "name": "SLF4J, Logback",
+            "id": "slf4j_logback",
+            "summary": "SLF4J is a logging facade. Logback is one implementation that formats and writes events."
+          },
+          {
+            "name": "Log aggregation (ELK Stack: Elasticsearch, Logstash, Kibana)",
+            "id": "log_aggregation_elk_stack_elasticsearch_logstash_kibana",
+            "summary": "Aggregate application logs in a searchable store and attach enough context to investigate incidents."
+          }
+        ],
+        "id": "logging"
+      },
+      {
+        "name": "Deployment",
+        "summary": "Package the application and its dependencies for repeatable deployment.",
+        "subTopics": [
+          {
+            "name": "Dockerizing Spring Boot",
+            "id": "dockerizing_spring_boot",
+            "summary": "Build a container image, externalize its configuration, and use appropriate health checks."
+          },
+          {
+            "name": "Why Boot apps are container-friendly",
+            "id": "why_boot_apps_are_container_friendly",
+            "summary": "An executable package can launch with a standard Java command and accept deployment-specific settings."
+          },
+          {
+            "name": "Fat JAR vs Thin JAR",
+            "id": "fat_jar_vs_thin_jar",
+            "summary": "An executable fat JAR packages its dependencies. A thin JAR needs them supplied separately."
+          }
+        ],
+        "id": "deployment"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "performance_and_real_world_scenarios_senior_level",
+    "title": "Performance & Real-World Scenarios (Senior Level)",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Startup & Memory",
+        "summary": "Measure where startup time and memory go before changing packaging or initialization.",
+        "subTopics": [
+          {
+            "name": "Why Spring Boot apps are heavy",
+            "id": "why_spring_boot_apps_are_heavy",
+            "summary": "Dependencies, caches, initialized beans, and runtime settings can all contribute to resource use."
+          },
+          {
+            "name": "Reduce startup time",
+            "id": "reduce_startup_time",
+            "summary": "Profile startup, then remove unused configuration or selectively defer expensive work."
+          },
+          {
+            "name": "GraalVM Native Image (concept)",
+            "id": "graalvm_native_image_concept",
+            "summary": "Native Image compiles an application ahead of time and has a different runtime and deployment model."
+          },
+          {
+            "name": "Native Images: Startup and Compatibility Trade-offs",
+            "id": "graalvm_native_images_aot_compilation_for_instant_startup",
+            "summary": "Compare lower startup or memory costs against build time and compatibility constraints using your workload."
+          }
+        ],
+        "id": "startup_and_memory"
+      },
+      {
+        "name": "Common Production Issues",
+        "summary": "Diagnose common failures by checking bean names, dependency graphs, and effective configuration.",
+        "subTopics": [
+          {
+            "name": "Bean overriding issues",
+            "id": "bean_overriding_issues",
+            "summary": "Find duplicate bean names and choose explicit names or registrations instead of masking collisions."
+          },
+          {
+            "name": "Circular dependencies",
+            "id": "circular_dependencies",
+            "summary": "Review dependency cycles and split responsibilities when two services depend directly on each other."
+          },
+          {
+            "name": "Configuration mismatch across environments",
+            "id": "configuration_mismatch_across_environments",
+            "summary": "Compare resolved properties, active profiles, and external overrides between environments."
+          }
+        ],
+        "id": "common_production_issues"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "miscellaneous_advanced_spring",
+    "title": "Miscellaneous / Advanced Spring",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "GraphQL",
+        "summary": "Expose a typed API whose queries select the fields they need.",
+        "subTopics": [
+          {
+            "name": "Spring for GraphQL (Controller, Schema, DataFetchers)",
+            "id": "spring_for_graphql_controller_schema_datafetchers",
+            "summary": "Define a schema and map query fields to controller or data-fetching methods."
+          }
+        ],
+        "id": "graphql"
+      },
+      {
+        "name": "WebSockets",
+        "summary": "Send live updates over a persistent connection and choose a messaging protocol when useful.",
+        "subTopics": [
+          {
+            "name": "STOMP protocol, SockJS, Real-time chat",
+            "id": "stomp_protocol_sockjs_real_time_chat",
+            "summary": "STOMP adds messaging conventions, and SockJS can provide fallback transports for supported clients."
+          }
+        ],
+        "id": "websockets"
+      },
+      {
+        "name": "Caching",
+        "summary": "Cache repeatable results and decide how entries are invalidated.",
+        "subTopics": [
+          {
+            "name": "@Cacheable, @CacheEvict",
+            "id": "cacheable_cacheevict",
+            "summary": "Cacheable can reuse a prior result. CacheEvict removes entries when the underlying data changes."
+          },
+          {
+            "name": "Providers: Caffeine, Redis",
+            "id": "providers_caffeine_redis",
+            "summary": "Use Caffeine for an in-process cache or Redis for shared cache storage across instances."
+          }
+        ],
+        "id": "caching"
+      }
+    ]
+  }
+]

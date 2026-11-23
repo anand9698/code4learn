@@ -1,0 +1,49 @@
+<a class="skip-link" href="#main-content" (click)="skipToContent($event)">Skip to content</a>
+<header class="site-header">
+  <div class="header-content">
+    <a class="site-name" routerLink="/" aria-label="Code4Learn home"><app-brand /></a>
+    <a class="header-link" routerLink="/syllabus">Syllabus</a>
+  </div>
+  <app-syllabus-nav [activeTechnology]="activeTechnology()" />
+</header>
+
+@let selected = selection();
+<div class="page-layout" [class]="selected ? 'theme-' + selected.technology.id : ''"
+     [class.has-sidebar]="selected?.topic?.subTopics?.length">
+  @if (selected; as item) {
+    @if (item.topic.subTopics?.length) {
+      <aside class="sidebar">
+        <nav aria-label="Current topic subtopics">
+          <a class="sidebar-title" routerLink="/topic-detail"
+             [queryParams]="lessonParams(item.technology.id, item.section, item.topic)"
+             [attr.aria-current]="!activeSubtopic() ? 'page' : null">{{ item.topic.name }}</a>
+          <ol class="subtopic-links">
+            @for (subtopic of item.topic.subTopics; track subtopic.id) {
+              <li>
+                <a routerLink="/subtopic-detail"
+                   [queryParams]="lessonParams(item.technology.id, item.section, item.topic, subtopic)"
+                   [attr.aria-current]="activeSubtopic() === subtopic.id ? 'page' : null">{{ subtopic.name }}</a>
+              </li>
+            }
+          </ol>
+        </nav>
+      </aside>
+    }
+  }
+  <main #main id="main-content" tabindex="-1">
+    <router-outlet />
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-identity">
+      <a routerLink="/" aria-label="Code4Learn home"><app-brand /></a>
+      <span>Java and Spring interview preparation</span>
+    </div>
+    <nav aria-label="Footer">
+      <a routerLink="/">Home</a>
+      <a routerLink="/syllabus">Full syllabus</a>
+    </nav>
+  </div>
+</footer>

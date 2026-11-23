@@ -1,0 +1,52 @@
+{
+  "name": "Java Compilation and Execution",
+  "overview": "Follow HelloWorld from source file to console. By the end, you'll know which tool to blame when 'hello' never shows up.",
+  "sections": [
+    {
+      "title": "Compile",
+      "content": "Run javac HelloWorld.java to turn source into bytecode. Syntax errors and type mismatches are caught here, before HelloWorld can disappoint you."
+    },
+    {
+      "title": "Load and link",
+      "content": "Run java HelloWorld. The JVM loads the starting class, links it, and initializes it. Verification happens during linking.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/compilation_and_execution_process/java-compilation-flow.svg",
+          "alt": "How Java runs your program",
+          "caption": "Compile first, then load, link, initialize, and invoke the entry point."
+        }
+      ]
+    },
+    {
+      "title": "Execute",
+      "content": "The JVM calls main. It can interpret bytecode and use its just-in-time compiler for frequently executed code. Runtime failures show up during this part of the journey."
+    }
+  ],
+  "codeExamples": [
+    {
+      "title": "Your First Java Source Code",
+      "description": "A simple program that prints a message",
+      "code": "// File: HelloWorld.java\npublic class HelloWorld {\n    public static void main(String[] args) {\n        System.out.println(\"Hello, World!\");\n        System.out.println(\"This is source code!\");\n    }\n}\n\n// Status: Written, but not yet executable\n// Next step: Compile it!",
+      "language": "java"
+    }
+  ],
+  "keyPoints": [
+    "Compile HelloWorld.java, run java HelloWorld, and explain what each command did."
+  ],
+  "references": [
+    {
+      "title": "Java Virtual Machine Specification - Bytecode Instructions",
+      "url": "https://docs.oracle.com/javase/specs/jvms/se25/html/jvms-6.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "What is the difference between javac and java?",
+      "answer": "javac compiles source. java launches a JVM and runs the application."
+    },
+    {
+      "question": "Can a program compile and still fail?",
+      "answer": "Yes. Compilation can succeed even if the application later hits an invalid input, missing runtime dependency, or other error."
+    }
+  ]
+}

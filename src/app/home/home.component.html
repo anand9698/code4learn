@@ -1,0 +1,52 @@
+<section class="hero" aria-labelledby="home-title">
+  <div class="motion-enter">
+    <h1 id="home-title"><app-brand /></h1>
+    <p>Study Java, Spring Framework, and Spring Boot. Get ready for your next interview.</p>
+  </div>
+  <app-syllabus-counts class="home-counts" [stats]="totals" [technologyCount]="technologyCount" />
+</section>
+
+<div class="home-content">
+  <section aria-labelledby="tracks-title">
+    <h2 id="tracks-title">Choose your learning path</h2>
+    <div class="track-grid motion-stagger">
+      @for (tech of technologies; track tech.id) {
+        <article class="track-card" [class]="'theme-' + tech.id">
+          <div class="track-heading">
+            <span class="tech-icon" aria-hidden="true">{{ tech.icon }}</span>
+            <h3>{{ tech.name }}</h3>
+          </div>
+          <p>{{ tech.description }}</p>
+          <div class="track-footer">
+            <p class="track-counts"><strong>{{ tech.stats.topics }}</strong> topics <strong>{{ tech.stats.subtopics }}</strong> subtopics</p>
+            <a [routerLink]="['/syllabus', tech.id]" [attr.aria-label]="'Explore ' + tech.name + ' syllabus'">
+              Open syllabus <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section aria-labelledby="upcoming-title">
+    <h2 id="upcoming-title">Coming soon</h2>
+    <ul class="upcoming-grid motion-stagger">
+      @for (tech of upcomingTechnologies; track tech.id) {
+        <li [style.--preview-border]="tech.color + '40'" [style.--preview-background]="tech.color + '12'">
+          <span class="tech-icon" aria-hidden="true" [style.background]="tech.color + '20'">{{ tech.icon }}</span>
+          <div>
+            <h3>{{ tech.name }}</h3>
+            <p>{{ tech.description }}</p>
+          </div>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <ul class="lesson-formats" aria-label="What you can study">
+    <li><span aria-hidden="true">📖</span> Guided topics</li>
+    <li><span aria-hidden="true">💻</span> Code examples</li>
+    <li><span aria-hidden="true">🎯</span> Interview practice</li>
+    <li><span aria-hidden="true">📊</span> Visual diagrams</li>
+  </ul>
+</div>

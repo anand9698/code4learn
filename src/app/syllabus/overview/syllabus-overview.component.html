@@ -1,0 +1,42 @@
+<div class="container">
+  <!-- Enhanced Header with Hero Section -->
+  <header class="hero-section">
+    <div class="hero-content animate-fade-in-down">
+      <app-brand class="hero-brand" />
+      <h1>Java & Spring Interview Syllabus</h1>
+      <p class="subtitle">Complete Guide for Java Developer Interviews</p>
+      <p class="description">From entry-level to senior positions covering Core Java, Spring Framework, Spring Boot 3.4+, and Spring AI</p>
+    </div>
+  </header>
+
+  <div class="content animate-fade-in">
+    <app-syllabus-counts class="overview-counts" [stats]="stats" />
+
+    <!-- Highlight Boxes -->
+    <div class="highlight-container">
+      <div class="highlight animate-fade-in-up" style="animation-delay: 0.1s;">
+        <div class="highlight-icon">📚</div>
+        <strong>Comprehensive Coverage</strong>
+        <p>This syllabus covers essential topics for Java interviews with the complete Spring & Spring Boot ecosystem.</p>
+      </div>
+      <div class="highlight animate-fade-in-up" style="animation-delay: 0.2s;">
+        <div class="highlight-icon">✨</div>
+        <strong>Spring and Spring Boot</strong>
+        <p>Browse the Spring Framework, Spring Boot, and Spring AI topics.</p>
+      </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    <div class="sections-wrapper animate-stagger">
+      <app-section
+        *ngFor="let entry of entries; let i = index"
+        [section]="entry.section"
+        [technologyId]="entry.technology.id"
+        [expanded]="openSection === entry.section"
+        (toggled)="toggleSection(entry.section)"
+        [style.animation-delay]="i * 0.1 + 's'">
+      </app-section>
+    </div>
+  </div>
+
+</div>

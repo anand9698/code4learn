@@ -1,0 +1,1151 @@
+[
+  {
+    "id": 1,
+    "slug": "core_java_basics",
+    "title": "Core Java Basics",
+    "difficulty": "basic",
+    "topics": [
+      {
+        "name": "Introduction to Java",
+        "summary": "Trace a program from Java source to a running JVM.",
+        "subTopics": [
+          {
+            "name": "History of Java",
+            "id": "history_of_java",
+            "summary": "Follow Oak from a device project to Java's public launch and key releases."
+          },
+          {
+            "name": "Features of Java (Platform Independent, OOP, etc.)",
+            "id": "features_of_java_platform_independent_oop_etc",
+            "summary": "Connect portability, object-oriented design, and managed memory to real programs."
+          },
+          {
+            "name": "JDK, JRE, JVM Architecture",
+            "id": "jdk_jre_jvm_architecture",
+            "summary": "Separate the tools in the JDK, the runtime libraries, and the JVM that executes bytecode."
+          },
+          {
+            "name": "Compilation and Execution Process",
+            "id": "compilation_and_execution_process",
+            "summary": "Follow javac output through class loading, linking, initialization, and execution."
+          },
+          {
+            "name": "Bytecode and Platform Independence",
+            "id": "bytecode_and_platform_independence",
+            "summary": "Read a class file with javap and explain why compatible JVMs can share it."
+          },
+          {
+            "name": "Java Editions (SE, EE, ME)",
+            "id": "java_editions_se_ee_me",
+            "summary": "Pick Java SE for general use, Jakarta EE for enterprise APIs, or Java ME for supported devices."
+          },
+          {
+            "name": "Path and Classpath (Environment Variables)",
+            "id": "path_and_classpath_environment_variables",
+            "summary": "Check PATH when a command is missing and the classpath when Java needs a class or JAR."
+          },
+          {
+            "name": "First Java Program structure and main method",
+            "id": "first_java_program_structure_and_main_method",
+            "summary": "Run Hello World, pass a command-line argument, and trace how it reaches main."
+          },
+          {
+            "name": "Java Keywords and Identifiers",
+            "id": "java_keywords_and_identifiers",
+            "summary": "Spot reserved words and choose clear, valid names for variables and types."
+          },
+          {
+            "name": "Comments in Java (Single-line, Multi-line, Documentation)",
+            "id": "comments_in_java_single_line_multi_line_documentation",
+            "summary": "Use line comments for short notes, block comments for longer notes, and Javadoc for API docs."
+          },
+          {
+            "name": "Java vs C++ comparison",
+            "id": "java_vs_c_comparison",
+            "summary": "Compare managed memory and JVM bytecode with C++ ownership and native builds."
+          },
+          {
+            "name": "Java is Pass-by-Value",
+            "id": "java_is_pass_by_value",
+            "summary": "Java copies every argument value, including references. Mutating an object differs from assigning a new reference."
+          }
+        ],
+        "id": "introduction_to_java"
+      },
+      {
+        "name": "Data Types & Variables",
+        "summary": "Choose a type, convert it safely, and put each variable in the right scope.",
+        "subTopics": [
+          {
+            "name": "Primitive data types",
+            "id": "primitive_data_types",
+            "summary": "Pick from eight primitive types for numbers, characters, and booleans."
+          },
+          {
+            "name": "Reference types",
+            "id": "reference_types",
+            "summary": "A reference points to an object or is null. Assigning it does not copy the object."
+          },
+          {
+            "name": "Type casting and conversion",
+            "id": "type_casting_and_conversion",
+            "summary": "Widening often happens automatically. Narrowing needs a cast and can lose information."
+          },
+          {
+            "name": "Variables (local, instance, static)",
+            "id": "variables_local_instance_static",
+            "summary": "Use local variables for temporary work, instance fields per object, and static fields per class."
+          }
+        ],
+        "id": "data_types_and_variables"
+      },
+      {
+        "name": "Operators & Control Statements",
+        "summary": "Write a condition, repeat work, and leave a block at the right time.",
+        "subTopics": [
+          {
+            "name": "Arithmetic, Logical, Relational operators",
+            "id": "arithmetic_logical_relational_operators",
+            "summary": "Calculate values, compare them, and use short-circuit boolean operators to skip unnecessary work."
+          },
+          {
+            "name": "If-else, switch statements",
+            "id": "if_else_switch_statements",
+            "summary": "Use if for flexible conditions and switch for choices based on one value or pattern."
+          },
+          {
+            "name": "Loops (for, while, do-while, enhanced for)",
+            "id": "loops_for_while_do_while_enhanced_for",
+            "summary": "Pick a for loop for counted work, a while loop for conditions, or enhanced for for iteration."
+          },
+          {
+            "name": "Break, continue, return statements",
+            "id": "break_continue_return_statements",
+            "summary": "Break leaves a loop, continue skips to the next iteration, and return exits the method."
+          }
+        ],
+        "id": "operators_and_control_statements"
+      },
+      {
+        "name": "Arrays & Basic I/O",
+        "summary": "Collect values in arrays and read simple input from the console.",
+        "subTopics": [
+          {
+            "name": "Single and multidimensional arrays",
+            "id": "single_and_multidimensional_arrays",
+            "summary": "An array has fixed length. A multidimensional Java array contains references to other arrays."
+          },
+          {
+            "name": "Array manipulation",
+            "id": "array_manipulation",
+            "summary": "Use indexing, copying, and sorting to transform a fixed-size array."
+          },
+          {
+            "name": "Jagged arrays",
+            "id": "jagged_arrays",
+            "summary": "Give each row its own length when the data is uneven."
+          },
+          {
+            "name": "Scanner class and Console I/O",
+            "id": "scanner_class_and_console_i_o",
+            "summary": "Use Scanner for tokenized input. A system console may be unavailable in an IDE."
+          }
+        ],
+        "id": "arrays_and_basic_i_o"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "object_oriented_programming_oop",
+    "title": "Object-Oriented Programming (OOP)",
+    "difficulty": "basic",
+    "topics": [
+      {
+        "name": "Classes and Objects",
+        "summary": "Create objects and predict what runs when they are initialized.",
+        "subTopics": [
+          {
+            "name": "Class definition and object creation",
+            "id": "class_definition_and_object_creation",
+            "summary": "A class defines fields and methods. Each new instance can hold its own state."
+          },
+          {
+            "name": "Constructors (default, parameterized, copy)",
+            "id": "constructors_default_parameterized_copy",
+            "summary": "Use constructors to build valid objects. Java supplies a default constructor only when none is declared."
+          },
+          {
+            "name": "Constructor overloading",
+            "id": "constructor_overloading",
+            "summary": "Offer different parameter lists and delegate shared initialization with this(...)."
+          },
+          {
+            "name": "this keyword",
+            "id": "this_keyword",
+            "summary": "Use this for the current instance, to distinguish fields, or to call another constructor."
+          },
+          {
+            "name": "Object Initialization Order",
+            "id": "object_initialization_order",
+            "summary": "Superclass initialization precedes subclass instance initializers and constructor bodies."
+          }
+        ],
+        "id": "classes_and_objects"
+      },
+      {
+        "name": "Encapsulation",
+        "summary": "Protect an object's rules with a small, intentional public API.",
+        "subTopics": [
+          {
+            "name": "Access modifiers (private, public, protected, default)",
+            "id": "access_modifiers_private_public_protected_default",
+            "summary": "Choose private, package access, protected, or public based on who needs the member."
+          },
+          {
+            "name": "Getters and Setters",
+            "id": "getters_and_setters",
+            "summary": "Expose only the changes callers need and validate them before updating state."
+          },
+          {
+            "name": "Data hiding",
+            "id": "data_hiding",
+            "summary": "Keep internal fields private and control how callers read or change them."
+          }
+        ],
+        "id": "encapsulation"
+      },
+      {
+        "name": "Inheritance & Composition",
+        "summary": "Know when to extend a type and when to give it a collaborator.",
+        "subTopics": [
+          {
+            "name": "Types of inheritance",
+            "id": "types_of_inheritance",
+            "summary": "A Java class can extend one class and implement multiple interfaces."
+          },
+          {
+            "name": "super keyword",
+            "id": "super_keyword",
+            "summary": "Use super to call a superclass constructor or access an inherited implementation."
+          },
+          {
+            "name": "Method overriding",
+            "id": "method_overriding",
+            "summary": "Replace inherited instance behavior with a compatible method and let the runtime pick it."
+          },
+          {
+            "name": "final keyword",
+            "id": "final_keyword",
+            "summary": "A final variable cannot be reassigned, a final method cannot be overridden, and a final class cannot be extended."
+          },
+          {
+            "name": "IS-A vs HAS-A relationship",
+            "id": "is_a_vs_has_a_relationship",
+            "summary": "Use inheritance for a genuine subtype and composition when an object uses another object."
+          }
+        ],
+        "id": "inheritance_and_composition"
+      },
+      {
+        "name": "Polymorphism",
+        "summary": "Distinguish selecting a method signature from selecting its implementation.",
+        "subTopics": [
+          {
+            "name": "Compile-time (Method Overloading)",
+            "id": "compile_time_method_overloading",
+            "summary": "The compiler chooses among same-name methods using the argument types and applicable conversions."
+          },
+          {
+            "name": "Runtime (Method Overriding)",
+            "id": "runtime_method_overriding",
+            "summary": "A subclass can override an inherited instance method to supply its own behavior."
+          },
+          {
+            "name": "Dynamic method dispatch",
+            "id": "dynamic_method_dispatch",
+            "summary": "Java dispatches an overridden instance method based on the actual object's type."
+          }
+        ],
+        "id": "polymorphism"
+      },
+      {
+        "name": "Abstraction",
+        "summary": "Describe what callers can rely on while keeping implementation details flexible.",
+        "subTopics": [
+          {
+            "name": "Abstract classes and methods",
+            "id": "abstract_classes_and_methods",
+            "summary": "Share a base implementation and require subclasses to fill in abstract methods."
+          },
+          {
+            "name": "Interfaces",
+            "id": "interfaces",
+            "summary": "Define a contract that different classes can implement."
+          },
+          {
+            "name": "Multiple inheritance using interfaces",
+            "id": "multiple_inheritance_using_interfaces",
+            "summary": "A class can implement multiple interfaces and may need to resolve conflicting default methods."
+          },
+          {
+            "name": "Marker interfaces",
+            "id": "marker_interfaces",
+            "summary": "A marker interface, such as Serializable, signals a property without declaring methods."
+          }
+        ],
+        "id": "abstraction"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "advanced_oop_and_java_language_features",
+    "title": "Advanced OOP & Java Language Features",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Static keyword",
+        "summary": "Recognize members that belong to a class and when they initialize.",
+        "subTopics": [
+          {
+            "name": "Static variables and methods",
+            "id": "static_variables_and_methods",
+            "summary": "Static fields are shared by instances of the class. Static methods have no this reference."
+          },
+          {
+            "name": "Static blocks",
+            "id": "static_blocks",
+            "summary": "A static block runs during initialization of its class."
+          },
+          {
+            "name": "Static nested classes",
+            "id": "static_nested_classes",
+            "summary": "A static nested class can be used without an instance of the enclosing class."
+          }
+        ],
+        "id": "static_keyword"
+      },
+      {
+        "name": "Inner Classes",
+        "summary": "Choose a nested type based on scope and access to the enclosing instance.",
+        "subTopics": [
+          {
+            "name": "Member inner class",
+            "id": "member_inner_class",
+            "summary": "A non-static member class carries a reference to an enclosing instance."
+          },
+          {
+            "name": "Static nested class",
+            "id": "static_nested_class",
+            "summary": "A static nested class has no implicit enclosing instance."
+          },
+          {
+            "name": "Local inner class",
+            "id": "local_inner_class",
+            "summary": "A local class lives inside a block and can capture effectively final local variables."
+          },
+          {
+            "name": "Anonymous inner class",
+            "id": "anonymous_inner_class",
+            "summary": "An anonymous class defines and instantiates an implementation at the same time."
+          }
+        ],
+        "id": "inner_classes"
+      },
+      {
+        "name": "Packages",
+        "summary": "Group related types and control what other packages can see.",
+        "subTopics": [
+          {
+            "name": "Creating and using packages",
+            "id": "creating_and_using_packages",
+            "summary": "Declare a package to group types under a qualified name."
+          },
+          {
+            "name": "Import statements",
+            "id": "import_statements",
+            "summary": "An import lets you refer to another type by its simple name."
+          },
+          {
+            "name": "Access protection",
+            "id": "access_protection",
+            "summary": "Package access limits a member to its package. Protected also supports subclass access under specific rules."
+          }
+        ],
+        "id": "packages"
+      },
+      {
+        "name": "Object Class Methods",
+        "summary": "Make custom objects work predictably with collections, logging, and copying.",
+        "subTopics": [
+          {
+            "name": "equals() and hashCode() contract",
+            "id": "equals_and_hashcode_contract",
+            "summary": "Equal objects must have equal hash codes. Keep equality fields stable while objects are hash keys."
+          },
+          {
+            "name": "toString()",
+            "id": "tostring",
+            "summary": "Supply a readable representation useful for debugging and avoid printing secrets."
+          },
+          {
+            "name": "clone()",
+            "id": "clone",
+            "summary": "Object.clone makes a shallow copy. A copy constructor can make ownership choices explicit."
+          },
+          {
+            "name": "finalize()",
+            "id": "finalize",
+            "summary": "Finalization is deprecated for removal and is unreliable for cleanup. Use try-with-resources instead."
+          }
+        ],
+        "id": "object_class_methods"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "exception_handling",
+    "title": "Exception Handling",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Core Exception Handling",
+        "summary": "Trace failures, catch only what you can handle, and close resources reliably.",
+        "subTopics": [
+          {
+            "name": "Fundamentals",
+            "id": "fundamentals",
+            "summary": "Follow a Throwable from the point it is thrown to a matching handler or thread exit."
+          },
+          {
+            "name": "Exception Hierarchy",
+            "id": "exception_hierarchy",
+            "summary": "Distinguish Error, checked exceptions, and RuntimeException using the Throwable hierarchy."
+          },
+          {
+            "name": "Checked vs Unchecked Exceptions",
+            "id": "checked_vs_unchecked_exceptions",
+            "summary": "The compiler requires checked exceptions to be caught or declared. Runtime exceptions and errors are unchecked."
+          },
+          {
+            "name": "try–catch–finally blocks",
+            "id": "try_catch_finally_blocks",
+            "summary": "Catch a recoverable type and use finally when cleanup must run after either outcome."
+          },
+          {
+            "name": "Multi-Catch and try-with-resources",
+            "id": "multi_catch_and_try_with_resources",
+            "summary": "Group compatible exception types in one catch and close resources automatically with try-with-resources."
+          },
+          {
+            "name": "throw vs throws keyword",
+            "id": "throw_vs_throws_keyword",
+            "summary": "Throw raises an exception object. A throws clause declares possible exceptions in a method signature."
+          },
+          {
+            "name": "Custom Exceptions",
+            "id": "custom_exceptions",
+            "summary": "Create a specific exception when callers benefit from recognizing a distinct failure."
+          },
+          {
+            "name": "Exception Propagation",
+            "id": "exception_propagation",
+            "summary": "An uncaught exception moves through callers until a matching handler is found."
+          },
+          {
+            "name": "Exception Chaining",
+            "id": "exception_chaining",
+            "summary": "When translating an exception, attach the original as its cause."
+          },
+          {
+            "name": "Best Practices for Core Java Exception Handling",
+            "id": "best_practices_for_core_java_exception_handling",
+            "summary": "Handle at the layer that can recover, preserve causes, and keep catch blocks specific."
+          }
+        ],
+        "id": "core_exception_handling"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "collections_framework",
+    "title": "Collections Framework",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Collection Interfaces",
+        "summary": "Pick the collection contract that matches your data and access pattern.",
+        "subTopics": [
+          {
+            "name": "Collection, List, Set, Queue, Map",
+            "id": "collection_list_set_queue_map",
+            "summary": "Lists keep position, sets enforce uniqueness, queues schedule removal, and maps associate keys with values."
+          },
+          {
+            "name": "Iterator, ListIterator, and Spliterator",
+            "id": "iterator_listiterator_and_spliterator",
+            "summary": "Use Iterator to traverse, ListIterator to move both ways, and Spliterator to partition traversal."
+          }
+        ],
+        "id": "collection_interfaces"
+      },
+      {
+        "name": "Implementations",
+        "summary": "Compare collection implementations by order, access cost, and concurrency behavior.",
+        "subTopics": [
+          {
+            "name": "ArrayList, LinkedList, Vector, Stack",
+            "id": "arraylist_linkedlist_vector_stack",
+            "summary": "Use ArrayList for indexed access and prefer a Deque to legacy Stack for stack operations."
+          },
+          {
+            "name": "HashSet, LinkedHashSet, TreeSet",
+            "id": "hashset_linkedhashset_treeset",
+            "summary": "Choose HashSet for membership, LinkedHashSet for encounter order, or TreeSet for sorted elements."
+          },
+          {
+            "name": "HashMap, LinkedHashMap, TreeMap",
+            "id": "hashmap_linkedhashmap_treemap",
+            "summary": "Choose HashMap for lookup, LinkedHashMap for encounter order, and TreeMap for sorted keys."
+          },
+          {
+            "name": "Hashtable and ConcurrentHashMap",
+            "id": "hashtable_and_concurrenthashmap",
+            "summary": "Prefer ConcurrentHashMap for concurrent access and note that it rejects null keys and values."
+          },
+          {
+            "name": "PriorityQueue and ArrayDeque",
+            "id": "priorityqueue_and_arraydeque",
+            "summary": "Use PriorityQueue when priority sets the order and ArrayDeque for a stack or FIFO queue."
+          }
+        ],
+        "id": "implementations"
+      },
+      {
+        "name": "Sorting and Utility",
+        "summary": "Sort data with an intentional order and reuse Java's collection utilities.",
+        "subTopics": [
+          {
+            "name": "Comparable vs Comparator",
+            "id": "comparable_vs_comparator",
+            "summary": "Comparable defines natural order. Comparator supplies a separate ordering for a particular task."
+          },
+          {
+            "name": "Collections and Arrays utility classes",
+            "id": "collections_and_arrays_utility_classes",
+            "summary": "Use Arrays for arrays and Collections helpers for collection operations such as sorting and searching."
+          }
+        ],
+        "id": "sorting_and_utility"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "slug": "generics",
+    "title": "Generics",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Generic Classes and Methods",
+        "summary": "Parameterize a class or method to reuse it while keeping compile-time type checks.",
+        "id": "generic_classes_and_methods"
+      },
+      {
+        "name": "Bounded Type Parameters",
+        "summary": "Use a bound such as T extends Number to state which types are accepted and which operations are available.",
+        "id": "bounded_type_parameters"
+      },
+      {
+        "name": "Wildcards (?, extends, super)",
+        "summary": "Accept related generic types with ? extends for reading and ? super for writing.",
+        "id": "wildcards_extends_super"
+      },
+      {
+        "name": "PECS Principle",
+        "summary": "Read PECS as producer extends, consumer super, then use it to design a type-safe copy method.",
+        "id": "pecs_principle"
+      },
+      {
+        "name": "Type Erasure",
+        "summary": "Generic type arguments are mostly erased at runtime. Explain why List<String> and List<Integer> have the same runtime class.",
+        "id": "type_erasure"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "slug": "multithreading_and_concurrency",
+    "title": "Multithreading & Concurrency",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Thread Basics",
+        "summary": "Create a task and understand what can pause, finish, or interrupt its thread.",
+        "subTopics": [
+          {
+            "name": "Thread class vs Runnable interface",
+            "id": "thread_class_vs_runnable_interface",
+            "summary": "Runnable describes the work. A Thread is one way to execute it."
+          },
+          {
+            "name": "Thread lifecycle",
+            "id": "thread_lifecycle",
+            "summary": "Track a thread from creation through runnable, waiting, or blocked states to termination."
+          },
+          {
+            "name": "sleep, join, yield, interrupt",
+            "id": "sleep_join_yield_interrupt",
+            "summary": "Sleep pauses, join waits for another thread, yield is a hint, and interrupt requests cooperation."
+          }
+        ],
+        "id": "thread_basics"
+      },
+      {
+        "name": "Synchronization",
+        "summary": "Protect shared state and recognize when threads stop making progress.",
+        "subTopics": [
+          {
+            "name": "synchronized keyword (blocks/methods)",
+            "id": "synchronized_keyword_blocks_methods",
+            "summary": "A synchronized block or method takes a monitor and coordinates visibility as well as exclusive access."
+          },
+          {
+            "name": "Locking: Object level vs Class level",
+            "id": "locking_object_level_vs_class_level",
+            "summary": "An instance monitor protects one object. A static synchronized method takes the Class object's monitor."
+          },
+          {
+            "name": "volatile keyword",
+            "id": "volatile_keyword",
+            "summary": "Volatile gives visibility for a field but does not make a compound operation such as increment atomic."
+          },
+          {
+            "name": "Deadlock, Livelock, and Starvation",
+            "id": "deadlock_livelock_and_starvation",
+            "summary": "Deadlock blocks progress, livelock keeps reacting without progress, and starvation denies a thread its turn."
+          }
+        ],
+        "id": "synchronization"
+      },
+      {
+        "name": "Inter-thread Communication",
+        "summary": "Coordinate waiting and notification around the condition that actually matters.",
+        "subTopics": [
+          {
+            "name": "wait, notify, and notifyAll",
+            "id": "wait_notify_and_notifyall",
+            "summary": "Call wait and notification methods while holding the monitor. Recheck the condition after waking."
+          },
+          {
+            "name": "Producer-Consumer problem",
+            "id": "producer_consumer_problem",
+            "summary": "Use a BlockingQueue when producers and consumers need safe handoff or bounded capacity."
+          }
+        ],
+        "id": "inter_thread_communication"
+      },
+      {
+        "name": "Concurrency Utilities",
+        "summary": "Choose an executor, a result type, or a coordination tool that fits the job.",
+        "subTopics": [
+          {
+            "name": "Executor Framework and Thread Pools",
+            "id": "executor_framework_and_thread_pools",
+            "summary": "Executors separate task submission from thread management. Choose capacity and shut them down deliberately."
+          },
+          {
+            "name": "Callable and Future",
+            "id": "callable_and_future",
+            "summary": "Callable returns a result or throws. Future represents the pending result and can be cancelled."
+          },
+          {
+            "name": "CompletableFuture",
+            "id": "completablefuture",
+            "summary": "Chain asynchronous stages and decide how failures and execution scheduling should be handled."
+          },
+          {
+            "name": "Locks (ReentrantLock, ReadWriteLock)",
+            "id": "locks_reentrantlock_readwritelock",
+            "summary": "ReentrantLock supports explicit locking strategies. ReadWriteLock separates shared reads from exclusive writes."
+          },
+          {
+            "name": "Atomic variables",
+            "id": "atomic_variables",
+            "summary": "Atomic types give atomic operations on individual variables, such as compare-and-set."
+          },
+          {
+            "name": "CountDownLatch and CyclicBarrier",
+            "id": "countdownlatch_and_cyclicbarrier",
+            "summary": "A latch opens after a countdown. A barrier lets a group wait for one another at a common point."
+          }
+        ],
+        "id": "concurrency_utilities"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "slug": "java_version_wise_features",
+    "title": "Java Version-wise Features",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Java 8 Features",
+        "summary": "Use Java 8's functional tools to transform data, express absence, and work with time.",
+        "subTopics": [
+          {
+            "name": "Lambda Expressions",
+            "id": "lambda_expressions",
+            "summary": "A lambda supplies behavior for a functional interface without an anonymous class body."
+          },
+          {
+            "name": "Functional Interfaces",
+            "id": "functional_interfaces",
+            "summary": "A functional interface has one abstract method and can be a target for a lambda."
+          },
+          {
+            "name": "Stream API",
+            "id": "stream_api",
+            "summary": "Build a pipeline with intermediate operations and execute it with a terminal operation."
+          },
+          {
+            "name": "Optional Class",
+            "id": "optional_class",
+            "summary": "Use Optional to represent a result that may be absent and handle that case explicitly."
+          },
+          {
+            "name": "Default and Static methods in Interfaces",
+            "id": "default_and_static_methods_in_interfaces",
+            "summary": "Default methods supply inherited behavior. Static interface methods belong to the interface itself."
+          },
+          {
+            "name": "Date and Time API (java.time)",
+            "id": "date_and_time_api_java_time",
+            "summary": "Use java.time types such as Instant, LocalDate, and ZonedDateTime for distinct time concepts."
+          }
+        ],
+        "id": "java_8_features"
+      },
+      {
+        "name": "Java 9 to 11 Features",
+        "summary": "Compare the modularity, tooling, and library changes introduced from Java 9 through 11.",
+        "subTopics": [
+          {
+            "name": "Module System (JPMS)",
+            "id": "module_system_jpms",
+            "summary": "A module declares dependencies and which packages it exports or opens."
+          },
+          {
+            "name": "Private methods in Interfaces",
+            "id": "private_methods_in_interfaces",
+            "summary": "Private interface methods let default methods share implementation details without exposing them."
+          },
+          {
+            "name": "JShell",
+            "id": "jshell",
+            "summary": "Use JShell to try small expressions or snippets before writing a full program."
+          },
+          {
+            "name": "var keyword (Local Variable Type Inference)",
+            "id": "var_keyword_local_variable_type_inference",
+            "summary": "Var asks the compiler to infer an initialized local variable's static type."
+          },
+          {
+            "name": "HTTP Client API",
+            "id": "http_client_api",
+            "summary": "Use Java 11's HttpClient for synchronous or asynchronous HTTP requests."
+          }
+        ],
+        "id": "java_9_to_11_features"
+      },
+      {
+        "name": "Java 12 to 17 Features (Java 17 LTS)",
+        "summary": "Use newer syntax to make data, branches, and allowed subtypes easier to read.",
+        "subTopics": [
+          {
+            "name": "Switch Expressions",
+            "id": "switch_expressions",
+            "summary": "Return a value from switch and use arrow cases to avoid accidental fall-through."
+          },
+          {
+            "name": "Text Blocks",
+            "id": "text_blocks",
+            "summary": "Write multiline strings with text blocks and check how indentation is handled."
+          },
+          {
+            "name": "Records",
+            "id": "records",
+            "summary": "Use records for transparent data carriers with generated accessors and value methods."
+          },
+          {
+            "name": "Sealed Classes",
+            "id": "sealed_classes",
+            "summary": "Restrict which types can directly extend or implement the sealed type."
+          },
+          {
+            "name": "Pattern Matching for instanceof",
+            "id": "pattern_matching_for_instanceof",
+            "summary": "Bind a variable as part of an instanceof check to avoid a separate cast."
+          }
+        ],
+        "id": "java_12_to_17_features_lts"
+      },
+      {
+        "name": "Java 21 Features (LTS)",
+        "summary": "Explore virtual threads and the collection and pattern tools finalized in Java 21.",
+        "subTopics": [
+          {
+            "name": "Virtual Threads (Project Loom)",
+            "id": "virtual_threads_project_loom",
+            "summary": "Run many blocking tasks with virtual threads while still limiting scarce resources such as database connections."
+          },
+          {
+            "name": "Sequenced Collections",
+            "id": "sequenced_collections",
+            "summary": "Sequenced interfaces expose first and last elements and a reversed view for ordered collections."
+          },
+          {
+            "name": "Record Patterns",
+            "id": "record_patterns",
+            "summary": "Destructure record components directly in a pattern."
+          },
+          {
+            "name": "Pattern Matching for Switch",
+            "id": "pattern_matching_for_switch",
+            "summary": "Match types in a switch and use exhaustiveness checking where applicable."
+          }
+        ],
+        "id": "java_21_features_lts"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "slug": "string_handling",
+    "title": "String Handling",
+    "difficulty": "basic",
+    "topics": [
+      {
+        "name": "String immutability and String Pool",
+        "summary": "Strings are immutable. The pool can share equal literals, while equals compares character values.",
+        "id": "string_immutability_and_string_pool"
+      },
+      {
+        "name": "String vs StringBuilder vs StringBuffer",
+        "summary": "Keep String for fixed text, StringBuilder for repeated edits, and StringBuffer when its synchronized operations fit.",
+        "id": "string_vs_stringbuilder_vs_stringbuffer"
+      },
+      {
+        "name": "Common String methods",
+        "summary": "Use methods such as equals, indexOf, substring, and strip to compare or transform text.",
+        "id": "common_string_methods"
+      },
+      {
+        "name": "String formatting and manipulation",
+        "summary": "Format values with an explicit locale when needed and use builders for repeated assembly.",
+        "id": "string_formatting_and_manipulation"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "slug": "regular_expressions_regex",
+    "title": "Regular Expressions (Regex)",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Pattern and Matcher classes",
+        "summary": "Compile reusable regex patterns and use a Matcher to find matches or test the whole input.",
+        "id": "pattern_and_matcher_classes"
+      },
+      {
+        "name": "Regex metacharacters and quantifiers",
+        "summary": "Read anchors, character classes, and quantifiers before making a pattern more complex.",
+        "id": "regex_metacharacters_and_quantifiers"
+      },
+      {
+        "name": "Groups and capturing",
+        "summary": "Capture parts of a match for extraction and use non-capturing groups when only grouping is needed.",
+        "id": "groups_and_capturing"
+      },
+      {
+        "name": "Common regex patterns for validation",
+        "summary": "Use a small pattern for format checks and use explicit parsing for rules a regex cannot verify.",
+        "id": "common_regex_patterns_for_validation"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "slug": "file_i_o_and_serialization",
+    "title": "File I/O & Serialization",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Byte Streams vs Character Streams",
+        "summary": "Use byte streams for raw data and readers or writers for text with an explicit charset.",
+        "id": "byte_streams_vs_character_streams"
+      },
+      {
+        "name": "BufferedReader and BufferedWriter",
+        "summary": "Buffer text operations, read lines when appropriate, and close or flush resources as needed.",
+        "id": "bufferedreader_and_bufferedwriter"
+      },
+      {
+        "name": "Java NIO (Path, Files, Channels)",
+        "summary": "Represent paths with Path, perform common file operations with Files, and use channels for lower-level I/O.",
+        "id": "java_nio_path_files_channels"
+      },
+      {
+        "name": "Serialization and Deserialization (transient, serialVersionUID)",
+        "summary": "Understand how object graphs are serialized, what transient excludes by default, and how serialVersionUID affects compatibility.",
+        "id": "serialization_and_deserialization_transient_serialversionuid"
+      },
+      {
+        "name": "Externalizable interface",
+        "summary": "Implement Externalizable when the class must control its representation and reconstruction contract.",
+        "id": "externalizable_interface"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "slug": "networking_in_java",
+    "title": "Networking in Java",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Socket Programming (TCP/UDP)",
+        "summary": "Choose TCP for an ordered byte stream or UDP for independent datagrams and handle their different guarantees.",
+        "id": "socket_programming_tcp_udp"
+      },
+      {
+        "name": "URL and URLConnection",
+        "summary": "Use URL to represent a resource address and URLConnection for access through supported protocols.",
+        "id": "url_and_urlconnection"
+      },
+      {
+        "name": "HttpURLConnection",
+        "summary": "Recognize the older HTTP API and compare its connection handling with Java's newer HttpClient.",
+        "id": "httpurlconnection"
+      },
+      {
+        "name": "InetAddress class",
+        "summary": "Resolve host names and inspect IP addresses using InetAddress.",
+        "id": "inetaddress_class"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "slug": "jdbc_database_connectivity",
+    "title": "JDBC (Database Connectivity)",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "JDBC Architecture and Drivers",
+        "summary": "Trace the JDBC call from application code through the driver to the database.",
+        "id": "jdbc_architecture_and_drivers"
+      },
+      {
+        "name": "Statement vs PreparedStatement vs CallableStatement",
+        "summary": "Use a plain Statement for fixed SQL, PreparedStatement for bound inputs, and CallableStatement for stored procedures.",
+        "id": "statement_vs_preparedstatement_vs_callablestatement"
+      },
+      {
+        "name": "ResultSet and Transaction Management",
+        "summary": "Read query rows through ResultSet and group database writes with commit or rollback.",
+        "id": "resultset_and_transaction_management"
+      },
+      {
+        "name": "Connection Pooling concepts",
+        "summary": "Reuse connections through a pool and size it against measured database capacity.",
+        "id": "connection_pooling_concepts"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "slug": "jvm_internals_and_memory_management",
+    "title": "JVM Internals & Memory Management",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "JVM Architecture: ClassLoader, Runtime Data Areas, Execution Engine",
+        "summary": "Trace class loading, runtime memory, and bytecode execution as separate JVM responsibilities.",
+        "id": "jvm_architecture_classloader_runtime_data_areas_execution_engine"
+      },
+      {
+        "name": "Heap vs Stack Memory",
+        "summary": "Compare shared heap objects with the call frames held on each thread's stack.",
+        "id": "heap_vs_stack_memory"
+      },
+      {
+        "name": "Garbage Collection Algorithms (G1, ZGC, etc.)",
+        "summary": "Compare collectors by pause time, throughput, and memory footprint on your workload.",
+        "id": "garbage_collection_algorithms_g1_zgc_etc"
+      },
+      {
+        "name": "JIT Compiler and Memory Leaks",
+        "summary": "Distinguish JIT optimization from memory retention, then profile the problem you actually observe.",
+        "id": "jit_compiler_and_memory_leaks"
+      },
+      {
+        "name": "Memory Model and happens-before relationship",
+        "summary": "Use happens-before relationships to reason about whether one thread can reliably see another's writes.",
+        "id": "memory_model_and_happens_before_relationship"
+      },
+      {
+        "name": "Reference Types (Strong, Weak, Soft, Phantom)",
+        "summary": "Compare how strong, soft, weak, and phantom references affect reachability and cleanup.",
+        "id": "reference_types_strong_weak_soft_phantom"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "slug": "advanced_java_concepts",
+    "title": "Advanced Java Concepts",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "Cloning (Shallow vs Deep)",
+        "summary": "A shallow copy shares referenced objects. A deep copy duplicates the mutable state that needs isolation.",
+        "id": "cloning_shallow_vs_deep"
+      },
+      {
+        "name": "Immutable Objects creation",
+        "summary": "Construct immutable objects by validating inputs and preventing mutable internals from escaping.",
+        "id": "immutable_objects_creation"
+      },
+      {
+        "name": "Java Native Interface (JNI)",
+        "summary": "Use JNI to call native code and account for platform builds, memory ownership, and failure handling.",
+        "id": "java_native_interface_jni"
+      },
+      {
+        "name": "Java Beans",
+        "summary": "Learn the JavaBeans conventions for properties and introspection. The name predates Spring beans.",
+        "id": "java_beans"
+      },
+      {
+        "name": "RMI (Remote Method Invocation)",
+        "summary": "Understand how RMI calls methods on remote Java objects and where local-call assumptions break down.",
+        "id": "rmi_remote_method_invocation"
+      },
+      {
+        "name": "Java Security Manager (Legacy, Disabled Since JDK 24)",
+        "summary": "Recognize the Security Manager in legacy code. It has been permanently disabled since JDK 24.",
+        "id": "java_security_manager"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "slug": "miscellaneous_core_topics",
+    "title": "Miscellaneous Core Topics",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Reflection API",
+        "summary": "Inspect classes or invoke members at runtime while respecting access and module boundaries.",
+        "id": "reflection_api"
+      },
+      {
+        "name": "Annotations (Built-in and Custom)",
+        "summary": "Attach metadata with built-in or custom annotations and choose retention and targets deliberately.",
+        "id": "annotations_built_in_and_custom"
+      },
+      {
+        "name": "Enums",
+        "summary": "Use enums for a fixed set of named values that can carry behavior as well as data.",
+        "id": "enums"
+      },
+      {
+        "name": "Wrapper Classes and Autoboxing/Unboxing",
+        "summary": "Box primitives into wrapper objects and watch for null unboxing and identity comparisons.",
+        "id": "wrapper_classes_and_autoboxing_unboxing"
+      },
+      {
+        "name": "Internationalization (i18n) and Localization",
+        "summary": "Use resource bundles and locale-aware formats for text, dates, and numbers.",
+        "id": "internationalization_i18n_and_localization"
+      },
+      {
+        "name": "JavaDoc and Code Documentation",
+        "summary": "Write Javadoc around caller expectations, accepted inputs, and meaningful failure behavior.",
+        "id": "javadoc_and_code_documentation"
+      }
+    ]
+  },
+  {
+    "id": 17,
+    "slug": "core_java_design_principles",
+    "title": "Core Java Design Principles",
+    "difficulty": "advanced",
+    "topics": [
+      {
+        "name": "SOLID Principles",
+        "summary": "Use SOLID to discuss responsibilities, extensibility, substitutability, interfaces, and dependency direction.",
+        "id": "solid_principles"
+      },
+      {
+        "name": "Creational Design Patterns (Singleton, Factory, Builder)",
+        "summary": "Choose a Factory for creation decisions, a Builder for configurable construction, or a Singleton only for deliberate sharing.",
+        "id": "creational_design_patterns_singleton_factory_builder"
+      },
+      {
+        "name": "Structural Design Patterns (Adapter, Proxy, Decorator)",
+        "summary": "Adapt an interface, wrap an object with behavior, or control access through a proxy.",
+        "id": "structural_design_patterns_adapter_proxy_decorator"
+      },
+      {
+        "name": "Behavioral Design Patterns (Observer, Strategy)",
+        "summary": "Use Observer for notification and Strategy for interchangeable behavior.",
+        "id": "behavioral_design_patterns_observer_strategy"
+      }
+    ]
+  },
+  {
+    "id": 18,
+    "slug": "best_practices_and_code_quality",
+    "title": "Best Practices & Code Quality",
+    "difficulty": "intermediate",
+    "topics": [
+      {
+        "name": "Clean Code principles",
+        "summary": "Prefer names and methods that say what the code does and make behavior easy to follow.",
+        "id": "clean_code_principles"
+      },
+      {
+        "name": "Code smells and refactoring",
+        "summary": "Spot duplication or misplaced responsibilities and refactor in testable steps.",
+        "id": "code_smells_and_refactoring"
+      },
+      {
+        "name": "Exception handling best practices",
+        "summary": "Catch failures where they can be handled, preserve useful causes, and close resources automatically.",
+        "id": "exception_handling_best_practices"
+      },
+      {
+        "name": "Naming conventions and coding standards",
+        "summary": "Apply established names and formatting consistently so reviewers can focus on behavior.",
+        "id": "naming_conventions_and_coding_standards"
+      },
+      {
+        "name": "Performance optimization techniques",
+        "summary": "Measure a representative workload, identify the bottleneck, and verify the change against the same workload.",
+        "id": "performance_optimization_techniques"
+      },
+      {
+        "name": "Unit Testing with JUnit and Mockito",
+        "summary": "Use JUnit for assertions and Mockito for test doubles when a real collaborator would obscure the behavior under test.",
+        "id": "unit_testing_with_junit_and_mockito"
+      }
+    ]
+  }
+]

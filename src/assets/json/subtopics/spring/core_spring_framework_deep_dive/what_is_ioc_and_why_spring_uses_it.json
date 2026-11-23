@@ -1,0 +1,52 @@
+{
+  "name": "Inversion of Control in Spring",
+  "overview": "Let Spring assemble the parts while your service does its job. Replace one dependency without editing the class that uses it.",
+  "sections": [
+    {
+      "title": "Give the container the wiring",
+      "content": "Inversion of Control means the container takes responsibility for creating and connecting managed objects. The service can focus on the work it was written to do.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/how_spring_creates_and_injects_beans_internally/ioc-control-flow.svg",
+          "alt": "Inversion of Control in Spring",
+          "caption": "The container assembles dependencies so the service can focus on its work."
+        }
+      ]
+    },
+    {
+      "title": "Declare what the service needs",
+      "content": "Dependency injection supplies collaborators from outside. A constructor makes required dependencies visible and lets tests supply simpler substitutes."
+    },
+    {
+      "title": "Make one change to prove it",
+      "content": "Wire a real repository into a service and a fake into a unit test. If the service works with both without changing its implementation, the dependency is genuinely replaceable."
+    }
+  ],
+  "codeExamples": [
+    {
+      "title": "✅ Loosely Coupled Code",
+      "description": "Now UserService depends on abstraction.",
+      "code": "public interface UserRepository {\n    User findById(Long id);\n}\n\npublic class UserService {\n    private UserRepository userRepository;\n\n    public UserService(UserRepository userRepository) {\n        this.userRepository = userRepository;\n    }\n\n    public User findUser(Long id) {\n        return userRepository.findById(id);\n    }\n}",
+      "language": "java"
+    }
+  ],
+  "keyPoints": [
+    "Wire a repository into a service, then swap in a fake. If the service stays unchanged, you've demonstrated IoC with DI."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Documentation - IoC Container",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "How do IoC and DI relate?",
+      "answer": "IoC is the broader transfer of control. Dependency injection is how the container supplies collaborators."
+    },
+    {
+      "question": "What is a Spring bean?",
+      "answer": "An object created or otherwise managed by the Spring container."
+    }
+  ]
+}

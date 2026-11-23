@@ -1,0 +1,43 @@
+{
+  "name": "JDK, JRE, and JVM",
+  "overview": "Three acronyms, three jobs. Follow a class from compilation to execution and explain where its objects and method calls live.",
+  "sections": [
+    {
+      "title": "Separate tools from runtime",
+      "content": "The JDK includes tools such as javac and a Java runtime. The runtime supplies the JVM and libraries. The JVM executes bytecode.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/jdk_jre_jvm_architecture/jdk-jre-jvm-relationship.svg",
+          "alt": "JDK, runtime, and JVM",
+          "caption": "The development kit supplies tools and a runtime. The JVM executes bytecode."
+        }
+      ]
+    },
+    {
+      "title": "Follow class startup",
+      "content": "The JVM loads, links, and initializes classes. Linking includes verification. Class initialization runs static field initializers and static blocks when applicable."
+    },
+    {
+      "title": "Place state and work",
+      "content": "Objects live on the shared heap. Each thread keeps method frames on its own stack. The interpreter and JIT execute code, and the garbage collector reclaims unreachable objects."
+    }
+  ],
+  "keyPoints": [
+    "Sketch one method call. Put its frame on the thread's stack and its new object on the shared heap. Now you can explain the difference without reciting a table."
+  ],
+  "references": [
+    {
+      "title": "Oracle JVM Specification - Official JVM architecture documentation"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Which component compiles source?",
+      "answer": "javac is a JDK tool. The JVM runs the compiled bytecode."
+    },
+    {
+      "question": "Where does a method call keep its local variables?",
+      "answer": "The call has a frame on the executing thread’s stack. A local reference can point to an object on the heap."
+    }
+  ]
+}

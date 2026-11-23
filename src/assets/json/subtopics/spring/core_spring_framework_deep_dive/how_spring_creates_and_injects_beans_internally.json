@@ -1,0 +1,44 @@
+{
+  "name": "How Spring Creates and Wires Beans",
+  "overview": "Spring knows how to build a bean before the bean exists. Follow what happens between reading the BeanDefinition and calling your first service method.",
+  "sections": [
+    {
+      "title": "Register the definition",
+      "content": "Scanning and configuration register BeanDefinitions. They describe how each bean is made, including its scope and construction metadata."
+    },
+    {
+      "title": "Create the instance",
+      "content": "Spring resolves constructor arguments before it can call the constructor. Other dependencies can be applied afterward through setters or fields.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/how_spring_creates_and_injects_beans_internally/bean-instantiation-flow.svg",
+          "alt": "How Spring creates a bean",
+          "caption": "Spring resolves constructor dependencies before it can create the instance."
+        }
+      ]
+    },
+    {
+      "title": "Initialize and expose",
+      "content": "Initialization callbacks run after dependency injection. A post-processor can wrap the bean in a proxy. The container reuses singletons and invokes managed destruction callbacks on shutdown."
+    }
+  ],
+  "keyPoints": [
+    "Trace one service from registration to use. Identify when its constructor runs, when its dependencies arrive, and where a proxy can appear."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Reference - Core Container",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "What is a BeanDefinition?",
+      "answer": "It is the container’s metadata for creating and configuring a bean."
+    },
+    {
+      "question": "Does all injection happen after construction?",
+      "answer": "No. Constructor dependencies must be resolved first. Setter and field injection occur later."
+    }
+  ]
+}

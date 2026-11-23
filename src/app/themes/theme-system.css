@@ -1,0 +1,219 @@
+/* Production-Ready Theme System */
+
+:root {
+  /* Java Colors */
+  --color-java-primary: #ED8936;
+  --color-java-secondary: #C05621;
+  --color-java-light: #FDB24E;
+  --color-java-dark: #8B4513;
+
+  /* Spring Colors */
+  --color-spring-primary: #68A063;
+  --color-spring-secondary: #3D8043;
+  --color-spring-light: #9AC47E;
+  --color-spring-dark: #2D5A2F;
+
+  /* Spring Boot Colors */
+  --color-springboot-primary: #1EA896;
+  --color-springboot-secondary: #0F6D4F;
+  --color-springboot-light: #A8E6E1;
+  --color-springboot-dark: #073B2F;
+
+  /* Global Colors */
+  --color-text-primary: #1A202C;
+  --color-text-secondary: #4A5568;
+  --color-text-light: #718096;
+
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7FAFC;
+  --color-bg-tertiary: #EDF2F7;
+
+  --color-border-light: #E2E8F0;
+  --color-border-medium: #CBD5E0;
+  --color-border-dark: #A0AEC0;
+
+  --color-status-success: #48BB78;
+  --color-status-warning: #ED8936;
+  --color-status-error: #F56565;
+  --color-status-info: #4299E1;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-base: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 64px;
+
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-base: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  --transition-slower: 0.8s ease;
+}
+
+/* Java Theme */
+.java-theme {
+  --color-primary: var(--color-java-primary);
+  --color-secondary: var(--color-java-secondary);
+  --color-accent: var(--color-java-light);
+}
+
+/* Spring Theme */
+.spring-theme {
+  --color-primary: var(--color-spring-primary);
+  --color-secondary: var(--color-spring-secondary);
+  --color-accent: var(--color-spring-light);
+}
+
+/* Spring Boot Theme */
+.springboot-theme {
+  --color-primary: var(--color-springboot-primary);
+  --color-secondary: var(--color-springboot-secondary);
+  --color-accent: var(--color-springboot-light);
+}
+
+/* Utility Classes */
+
+/* Text utilities */
+.text-primary {
+  color: var(--color-text-primary);
+}
+
+.text-secondary {
+  color: var(--color-text-secondary);
+}
+
+.text-light {
+  color: var(--color-text-light);
+}
+
+/* Background utilities */
+.bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--color-bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--color-bg-tertiary);
+}
+
+/* Shadow utilities */
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-base {
+  box-shadow: var(--shadow-base);
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+/* Padding utilities */
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-base { padding: var(--spacing-base); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+
+.px-xs { padding-left: var(--spacing-xs); padding-right: var(--spacing-xs); }
+.px-sm { padding-left: var(--spacing-sm); padding-right: var(--spacing-sm); }
+.px-base { padding-left: var(--spacing-base); padding-right: var(--spacing-base); }
+
+.py-xs { padding-top: var(--spacing-xs); padding-bottom: var(--spacing-xs); }
+.py-sm { padding-top: var(--spacing-sm); padding-bottom: var(--spacing-sm); }
+.py-base { padding-top: var(--spacing-base); padding-bottom: var(--spacing-base); }
+
+/* Margin utilities */
+.m-xs { margin: var(--spacing-xs); }
+.m-sm { margin: var(--spacing-sm); }
+.m-base { margin: var(--spacing-base); }
+.m-md { margin: var(--spacing-md); }
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Border radius utilities */
+.rounded-xs { border-radius: var(--radius-xs); }
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-base { border-radius: var(--radius-base); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+
+/* Interactive states */
+button:disabled,
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.gap-base {
+  gap: var(--spacing-base);
+}
+
+/* Grid utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gap-md {
+  gap: var(--spacing-md);
+}

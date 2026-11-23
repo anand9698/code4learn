@@ -1,0 +1,13 @@
+<nav class="topic-bar" aria-label="Learning tracks">
+  <a class="home-link" routerLink="/" aria-label="Home" title="Home"
+     routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" ariaCurrentWhenActive="page">
+    <span class="home-icon" aria-hidden="true"></span>
+  </a>
+  @for (technology of technologies; track technology.id) {
+    <a
+      [routerLink]="['/syllabus', technology.id]"
+      [attr.aria-current]="activeTechnology() === technology.id ? 'location' : null">
+      {{ technology.name }}
+    </a>
+  }
+</nav>

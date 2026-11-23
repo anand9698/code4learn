@@ -1,0 +1,42 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Spring Boot Rocket -->
+  <defs>
+    <linearGradient id="bootGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1EA896;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0F6D4F;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="flameGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE66D;stop-opacity:0.5" />
+    </linearGradient>
+  </defs>
+
+  <!-- Rocket body -->
+  <path d="M 40 10 L 45 20 L 45 60 Q 45 70 50 75 Q 55 70 55 60 L 55 20 L 60 10 Z"
+        fill="url(#bootGradient)" stroke="#0F6D4F" stroke-width="1.5"/>
+
+  <!-- Window -->
+  <circle cx="50" cy="25" r="4" fill="#A8E6E1" stroke="#0F6D4F" stroke-width="0.5"/>
+
+  <!-- Left fin -->
+  <path d="M 40 50 L 30 65 L 35 60 Z" fill="url(#bootGradient)" stroke="#0F6D4F" stroke-width="1"/>
+
+  <!-- Right fin -->
+  <path d="M 60 50 L 70 65 L 65 60 Z" fill="url(#bootGradient)" stroke="#0F6D4F" stroke-width="1"/>
+
+  <!-- Flame 1 -->
+  <path d="M 45 75 Q 43 85 45 95" fill="url(#flameGradient)" stroke="none"/>
+
+  <!-- Flame 2 -->
+  <path d="M 50 76 Q 50 88 50 98" fill="url(#flameGradient)" stroke="none"/>
+
+  <!-- Flame 3 -->
+  <path d="M 55 75 Q 57 85 55 95" fill="url(#flameGradient)" stroke="none"/>
+
+  <!-- Speed lines (indicating motion) -->
+  <line x1="25" y1="30" x2="35" y2="32" stroke="#1EA896" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="20" y1="40" x2="32" y2="42" stroke="#1EA896" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="75" y1="32" x2="85" y2="30" stroke="#1EA896" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+  <line x1="68" y1="42" x2="80" y2="40" stroke="#1EA896" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+</svg>

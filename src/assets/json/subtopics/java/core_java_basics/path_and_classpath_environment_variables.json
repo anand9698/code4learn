@@ -1,0 +1,48 @@
+{
+  "name": "PATH and the Java Classpath",
+  "overview": "When Java says it can't find something, first ask what's missing. Learn to tell a lost command from a lost class and fix each one.",
+  "sections": [
+    {
+      "title": "Find the command",
+      "content": "Your shell uses PATH to locate java and javac. If the shell cannot find javac, check which JDK is installed and whether its bin directory is on PATH.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/path_and_classpath_environment_variables/path-classpath-workflow.svg",
+          "alt": "Find the command or find the class?",
+          "caption": "Check PATH for missing executables and the classpath for application classes and JARs."
+        }
+      ]
+    },
+    {
+      "title": "Find the class",
+      "content": "Java tools use the classpath to locate classes and libraries. Prefer an explicit -cp for manual runs, or let the build tool manage it. Add the current directory only if you need it."
+    },
+    {
+      "title": "Read the failure",
+      "content": "ClassNotFoundException often follows an explicit class lookup. NoClassDefFoundError can indicate a missing runtime definition or an earlier initialization failure. Check the cause before changing settings."
+    }
+  ],
+  "keyPoints": [
+    "Diagnose two failures. Check PATH when javac won't start, and check the runtime classpath or the original initialization error when a class won't load."
+  ],
+  "references": [
+    {
+      "title": "Java Command Line Options Reference",
+      "url": "https://docs.oracle.com/en/java/javase/25/docs/specs/man/java.html"
+    },
+    {
+      "title": "Java SE API: NoClassDefFoundError",
+      "url": "https://docs.oracle.com/en/java/javase/25/docs/api/java.base/java/lang/NoClassDefFoundError.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "What separates classpath entries?",
+      "answer": "Use a semicolon on Windows and a colon on Linux or macOS."
+    },
+    {
+      "question": "What should you check when javac is not recognized?",
+      "answer": "Check the JDK installation and the shell’s PATH before looking at any Java classpath settings."
+    }
+  ]
+}

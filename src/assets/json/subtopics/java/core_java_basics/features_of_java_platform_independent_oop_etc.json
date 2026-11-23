@@ -1,0 +1,48 @@
+{
+  "name": "Key Features of Java",
+  "overview": "Java brings a JVM, a big standard library, and a garbage collector that never asks for a tip. Match each feature to the problem it solves.",
+  "sections": [
+    {
+      "title": "Run on different platforms",
+      "content": "A compatible JVM can execute the same bytecode on another platform. The standard library provides common APIs for files, networking, and threads."
+    },
+    {
+      "title": "Structure your code",
+      "content": "Classes group state with behavior. Interfaces define a contract. That lets two implementations serve the same caller without making the caller learn both.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/features_of_java_platform_independent_oop_etc/java-oop-concepts.svg",
+          "alt": "Four object-oriented concepts",
+          "caption": "Each concept solves a different problem in an object-oriented design."
+        }
+      ]
+    },
+    {
+      "title": "Use the runtime deliberately",
+      "content": "The JVM verifies bytecode and manages memory. Garbage collection reclaims unreachable objects. Threads support concurrent work, and JIT compilation can improve frequently executed paths."
+    }
+  ],
+  "keyPoints": [
+    "Explain three features with an example for each. Try the same bytecode on two platforms, a reusable interface, and a task running on another thread."
+  ],
+  "references": [
+    {
+      "title": "The Java Language Specification (JLS)",
+      "url": "https://docs.oracle.com/javase/specs/jls/se25/html/index.html"
+    },
+    {
+      "title": "Oracle JDK 24 Security Manager documentation",
+      "url": "https://docs.oracle.com/en/java/javase/24/security/security-manager-is-permanently-disabled.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Does garbage collection prevent every memory leak?",
+      "answer": "No. An unused object can still be retained by a reachable reference."
+    },
+    {
+      "question": "What makes Java portable?",
+      "answer": "Compatible JVMs understand the same class-file format, and the standard library hides many operating-system differences."
+    }
+  ]
+}

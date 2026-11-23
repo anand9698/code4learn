@@ -1,0 +1,55 @@
+{
+  "name": "The Java Exception Hierarchy",
+  "overview": "An exception stack trace looks less dramatic once you know the family tree. Place common failures on it, then decide which ones you can handle.",
+  "sections": [
+    {
+      "title": "Start at Throwable",
+      "content": "Throwable has two main branches, Error and Exception. RuntimeException sits under Exception. Errors commonly signal serious failures that regular application handlers cannot fix.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/exception_handling/exception_hierarchy/exception_hierarchy_tree.svg",
+          "alt": "The Java exception hierarchy",
+          "caption": "Throwable has two main branches. Checked exceptions must be caught or declared."
+        }
+      ]
+    },
+    {
+      "title": "Know what is checked",
+      "content": "The compiler requires checked exceptions to be caught or declared. RuntimeException and Error subclasses are unchecked. Unchecked means the compiler does not enforce handling."
+    },
+    {
+      "title": "Handle at the right boundary",
+      "content": "Catch a specific type where you can recover or report the failure appropriately. Keep the original cause when wrapping, and use try-with-resources to close resources."
+    }
+  ],
+  "codeExamples": [
+    {
+      "title": "Checked exception — IOException with proper handling",
+      "language": "java",
+      "code": "import java.io.*;\n\npublic class CheckedExample {\n  public static void main(String[] args) {\n    try (BufferedReader r = new BufferedReader(new FileReader(\"config.txt\"))) {\n      String line = r.readLine();\n      System.out.println(\"Config: \" + line);\n    } catch (IOException e) {\n      System.err.println(\"File IO failed: \" + e.getMessage());\n      // Caller MUST handle or declare — compiler enforces this\n    }\n  }\n}"
+    }
+  ],
+  "keyPoints": [
+    "Classify IOException, NullPointerException, and OutOfMemoryError. For each one, name a sensible response and explain why."
+  ],
+  "references": [
+    {
+      "title": "Throwable (Java SE Documentation)",
+      "url": "https://docs.oracle.com/javase/8/docs/api/java/lang/Throwable.html"
+    },
+    {
+      "title": "Java Language Specification — Exception Handling (Chapter 11)",
+      "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-11.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Is IOException checked?",
+      "answer": "Yes. Catch it or declare it in the method signature."
+    },
+    {
+      "question": "Where does NullPointerException belong?",
+      "answer": "It is an unchecked RuntimeException. Address the invalid assumption about a null value."
+    }
+  ]
+}

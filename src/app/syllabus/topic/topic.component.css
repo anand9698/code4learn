@@ -1,0 +1,110 @@
+:host {
+  display: block;
+  min-width: 0;
+  border: 1px solid var(--course-border, #e4ddeb);
+  border-radius: 7px;
+  background: var(--syllabus-light, #fff);
+}
+
+.topic-header,
+.subtopic-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 9px;
+  width: 100%;
+  min-height: 44px;
+  padding: 6px 9px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--syllabus-ink, var(--brand-ink));
+  font: inherit;
+  line-height: 1.35;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.topic-header:hover,
+.topic-header[aria-expanded="true"],
+.subtopic-item:hover {
+  box-shadow: inset 0 0 0 1px var(--syllabus-accent, #7760aa);
+}
+
+.topic-header::before,
+.subtopic-item::before {
+  content: '';
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(-45deg);
+  transition: transform var(--motion-expand) var(--motion-ease);
+}
+
+.topic-header[aria-expanded="true"]::before {
+  transform: rotate(45deg);
+}
+
+.item-text {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  gap: 2px 14px;
+  overflow-wrap: anywhere;
+}
+
+.item-name {
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.item-summary {
+  color: #514b61;
+  font-size: 0.8rem;
+}
+
+.sub-topics-wrapper {
+  padding: 2px 8px 7px;
+  border-top: 1px solid var(--course-border, #ece6f2);
+}
+
+.topic-overview-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding-inline: 8px;
+  color: var(--syllabus-ink, #493782);
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.sub-topics {
+  display: grid;
+  gap: 3px;
+  list-style: none;
+}
+
+.subtopic-item {
+  background: var(--syllabus-background, #f6f3fa);
+}
+
+.subtopic-item::before {
+  width: 5px;
+  height: 5px;
+}
+
+@media (hover: hover) {
+  .subtopic-item:hover::before {
+    transform: translateX(2px) rotate(-45deg);
+  }
+}
+
+@media (min-width: 820px) {
+  .item-text:has(.item-summary) {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: center;
+  }
+}

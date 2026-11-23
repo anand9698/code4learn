@@ -1,0 +1,61 @@
+{
+  "name": "History of Java",
+  "overview": "Java started as Oak, a language for consumer devices. In three stops, see how it went public, made programs portable, and kept evolving.",
+  "sections": [
+    {
+      "title": "1991 to 1996: Oak becomes Java",
+      "content": "James Gosling and Sun Microsystems' Green Team began work on Oak in 1991. Sun announced it as Java in 1995 and released JDK 1.0 in 1996."
+    },
+    {
+      "title": "Why Java caught on",
+      "content": "Compile once, run on a compatible Java Virtual Machine (JVM). The same bytecode can run on Windows, Linux, or macOS. That is Write Once, Run Anywhere. No second compilation needed.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/history_of_java/wora-concept.svg",
+          "alt": "Write Once, Run Anywhere",
+          "caption": "One class file can run on compatible JVMs on different operating systems."
+        }
+      ]
+    },
+    {
+      "title": "Five releases worth remembering",
+      "content": "Oracle acquired Sun in 2010. These releases show how the language evolved.",
+      "subsections": [
+        {
+          "title": "Java 5 and 8",
+          "content": "Java 5 made collections type-safe with generics. Java 8 added lambdas and streams, making it easier to express what to do with a collection."
+        },
+        {
+          "title": "Java 17, 21, and 25",
+          "content": "Java 17 finalized sealed classes. Java 21 finalized virtual threads. Java 25 let beginners write a first program without spelling out the whole class."
+        }
+      ]
+    }
+  ],
+  "keyPoints": [
+    "For your 30-second recap, connect three things: where Oak began, why bytecode could travel, and which Java release changed how you write code."
+  ],
+  "references": [
+    {
+      "title": "Oracle Java Documentation - The History of Java Technology"
+    },
+    {
+      "title": "Oracle Java SE Support Roadmap",
+      "url": "https://www.oracle.com/java/technologies/java-se-support-roadmap.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Who created Java, and why?",
+      "answer": "James Gosling and the Green Team at Sun Microsystems started Oak in 1991 for consumer electronics."
+    },
+    {
+      "question": "How does Write Once, Run Anywhere work?",
+      "answer": "The compiler produces bytecode. Each platform provides a compatible JVM that can run it."
+    },
+    {
+      "question": "Which Java releases are LTS?",
+      "answer": "Oracle designates Java 8, 11, 17, 21, and 25 as long-term support releases."
+    }
+  ]
+}

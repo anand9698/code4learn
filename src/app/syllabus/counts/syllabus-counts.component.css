@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+ul {
+  display: grid;
+  width: min(100%, 420px);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(6px, 1.5vw, 12px);
+  list-style: none;
+}
+
+li {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 4px;
+  min-height: clamp(68px, 9vw, 88px);
+  padding: 8px 4px;
+  border: 1px solid var(--counts-border, #ddd5eb);
+  border-radius: 10px;
+  background: var(--counts-background, #fffc);
+  color: var(--counts-label, var(--syllabus-ink, var(--brand-ink)));
+  font-size: 0.85rem;
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  line-height: 1.2;
+  font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+  color: var(--counts-value, var(--syllabus-title, var(--brand-ink)));
+}
+
+strong {
+  font-variant-numeric: tabular-nums;
+}

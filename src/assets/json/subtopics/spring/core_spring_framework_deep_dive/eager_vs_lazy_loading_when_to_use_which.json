@@ -1,0 +1,48 @@
+{
+  "name": "Eager vs Lazy Loading",
+  "overview": "Pay at startup or at first use. Compare the bill for loading Spring beans and JPA associations, then decide what each use case needs.",
+  "sections": [
+    {
+      "title": "When Spring creates the bean",
+      "content": "Spring usually creates non-lazy singletons at startup. Lazy initialization can defer work, but an eager singleton that directly needs the bean may still trigger creation.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/eager_vs_lazy_loading_when_to_use_which/spring-eager-vs-lazy-beans.svg",
+          "alt": "When does Spring create a bean?",
+          "caption": "Lazy creation can defer work. A dependency needed at startup can still be created early."
+        }
+      ]
+    },
+    {
+      "title": "When JPA fetches data",
+      "content": "Eager and lazy fetching control when related data becomes available. Inspect the SQL for excess data or an N+1 query pattern."
+    },
+    {
+      "title": "Decide for the use case",
+      "content": "Create critical services early when startup validation matters. Fetch required associations inside the persistence context, using a query that suits the use case."
+    }
+  ],
+  "keyPoints": [
+    "Choose when to initialize one costly bean and when to fetch one association. Say which delay you accept and how you'd measure it."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Reference - Core Container",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    },
+    {
+      "title": "Spring Framework Reference: Lazy-initialized Beans",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-lazy-init.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Can a lazy bean still start eagerly?",
+      "answer": "Yes. An eager singleton may need it during startup."
+    },
+    {
+      "question": "Why might accessing a lazy association fail?",
+      "answer": "An unloaded association may need an open persistence context to fetch its data."
+    }
+  ]
+}

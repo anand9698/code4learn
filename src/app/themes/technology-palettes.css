@@ -1,0 +1,39 @@
+.theme-java,
+.theme-spring,
+.theme-springboot {
+  --syllabus-accent: rgb(var(--syllabus-accent-rgb));
+  --syllabus-title: rgb(var(--syllabus-title-rgb));
+  --course-border: rgb(var(--syllabus-accent-rgb) / 29%);
+  --syllabus-action: linear-gradient(135deg, var(--syllabus-accent), var(--syllabus-gradient-end));
+  --syllabus-action-hover: linear-gradient(135deg, var(--syllabus-gradient-end), var(--syllabus-hover-end));
+}
+
+.theme-java {
+  --syllabus-light: #fff5e6;
+  --syllabus-background: #ffe8cc;
+  --syllabus-ink: #2c1810;
+  --syllabus-accent-rgb: 255 140 0;
+  --syllabus-title-rgb: 204 85 0;
+  --syllabus-gradient-end: #ff6600;
+  --syllabus-hover-end: #ff4500;
+}
+
+.theme-spring {
+  --syllabus-light: #f0fdf4;
+  --syllabus-background: #dcfce7;
+  --syllabus-ink: #14532d;
+  --syllabus-accent-rgb: 22 163 74;
+  --syllabus-title-rgb: 21 128 61;
+  --syllabus-gradient-end: var(--syllabus-title);
+  --syllabus-hover-end: #166534;
+}
+
+.theme-springboot {
+  --syllabus-light: #ecfdf5;
+  --syllabus-background: #d1fae5;
+  --syllabus-ink: #064e3b;
+  --syllabus-accent-rgb: 5 150 105;
+  --syllabus-title-rgb: 4 120 87;
+  --syllabus-gradient-end: var(--syllabus-title);
+  --syllabus-hover-end: #065f46;
+}

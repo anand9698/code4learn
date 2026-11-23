@@ -1,0 +1,44 @@
+{
+  "name": "Java Keywords and Identifiers",
+  "overview": "Some Java words already have jobs. Learn which names you can use, then turn a handful of bad identifiers into names a teammate would thank you for.",
+  "sections": [
+    {
+      "title": "Words Java already uses",
+      "content": "Reserved words such as class and return cannot be names you choose. Words such as record have special meaning in certain contexts.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/java/core_java_basics/java_keywords_and_identifiers/java-keywords-overview.svg",
+          "alt": "Keywords, names, and literals",
+          "caption": "Reserved keywords, contextual keywords, and literals follow different rules."
+        }
+      ]
+    },
+    {
+      "title": "Names the compiler accepts",
+      "content": "Identifiers are case-sensitive and can use Unicode. A digit cannot come first, and a single underscore is reserved. studentAge works. 2students does not."
+    },
+    {
+      "title": "Names teammates can read",
+      "content": "Use camelCase for methods and variables, PascalCase for types, and UPPER_SNAKE_CASE for constants. Choose names that say what the value or method does."
+    }
+  ],
+  "keyPoints": [
+    "Fix 2students, student-age, and int class. Use camelCase for variables, PascalCase for types, and UPPER_SNAKE_CASE for constants."
+  ],
+  "references": [
+    {
+      "title": "Java Language Specification (JLS) - Chapter 3: Lexical Structure",
+      "url": "https://docs.oracle.com/javase/specs/jls/se25/html/jls-3.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Are age and Age the same identifier?",
+      "answer": "No. Java distinguishes uppercase and lowercase letters."
+    },
+    {
+      "question": "Can you declare a variable named class?",
+      "answer": "No. class is a reserved keyword. Choose a name such as className."
+    }
+  ]
+}

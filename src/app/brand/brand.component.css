@@ -1,0 +1,30 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.48em;
+  color: inherit;
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+img {
+  display: block;
+  width: var(--brand-mark-size, 1.85em);
+  height: var(--brand-mark-size, 1.85em);
+  flex: none;
+  box-shadow: 0 0 0 1px #fbf8ff30, 0 0.18em 0.55em #0e082942;
+  border-radius: 22%;
+  transition: transform var(--motion-fast) var(--motion-ease);
+}
+
+@media (hover: hover) {
+  :host:hover img {
+    transform: rotate(-5deg) scale(1.06);
+  }
+}
+
+.accent {
+  color: var(--brand-accent);
+}

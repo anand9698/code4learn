@@ -1,0 +1,208 @@
+@if (lesson$ | async; as lesson) {
+<div class="subtopic-detail-container">
+  <div class="header">
+    <button type="button" class="back-button" (click)="goBack(lesson.technologyId)">
+      ← Back
+    </button>
+    <div class="breadcrumb" aria-label="Lesson path">
+      <span class="section-name">{{ lesson.sectionTitle }}</span>
+      <span class="separator" aria-hidden="true">›</span>
+      <span class="topic-name">{{ lesson.topicName }}</span>
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div class="content loading" *ngIf="lesson.status === 'loading'" role="status">
+    <div class="loader">
+      <div class="spinner"></div>
+      <p>Loading subtopic content...</p>
+    </div>
+  </div>
+
+  <ng-template #lessonText let-text>
+    @if (text | lessonBullets; as bullets) {
+      <ul>
+        @for (bullet of bullets; track $index) {
+          <li>{{ bullet }}</li>
+        }
+      </ul>
+    } @else {
+      <div class="lesson-prose">{{ text }}</div>
+    }
+  </ng-template>
+
+  <ng-template #examples let-items>
+    <div *ngFor="let example of items" class="code-example">
+      <h3>{{ example.title }}</h3>
+      <p *ngIf="example.description" class="code-description">{{ example.description }}</p>
+      <div class="code-block">
+        <div class="code-header">
+          <span class="language-badge">{{ example.language }}</span>
+        </div>
+        <pre><code>{{ example.code }}</code></pre>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #images let-items>
+    @for (image of items; track image.url) {
+      <app-lesson-diagram [image]="image" />
+    }
+  </ng-template>
+
+  <div class="content motion-enter" *ngIf="lesson.content as content">
+    <h1>{{ content.name }}</h1>
+
+    <!-- Overview Section -->
+    <div class="overview-section" *ngIf="content.overview">
+      <h2>Overview</h2>
+      <p class="overview-text">{{ content.overview }}</p>
+    </div>
+
+    <!-- Main Content Sections -->
+    <div class="content-sections" *ngIf="content.sections && content.sections.length > 0">
+      <div *ngFor="let section of content.sections; let i = index" class="content-section">
+        <div class="section-lead">
+          <div class="section-content">
+            <h2>{{ i + 1 }}. {{ section.title }}</h2>
+            <ng-container *ngTemplateOutlet="lessonText; context: { $implicit: section.content }" />
+          </div>
+          <div *ngIf="section.images?.length" class="section-images">
+            <ng-container *ngTemplateOutlet="images; context: { $implicit: section.images }" />
+          </div>
+        </div>
+
+        <!-- Code Examples within Section -->
+        <div *ngIf="section.codeExamples && section.codeExamples.length > 0" class="section-code-examples">
+          <ng-container *ngTemplateOutlet="examples; context: { $implicit: section.codeExamples }" />
+        </div>
+
+        <!-- Subsections -->
+        <div *ngIf="section.subsections && section.subsections.length > 0" class="subsections">
+          <div *ngFor="let subsection of section.subsections" class="subsection">
+            <h3>{{ subsection.title }}</h3>
+            @if (subsection.content; as text) {
+              <ng-container *ngTemplateOutlet="lessonText; context: { $implicit: text }" />
+            }
+            
+            <!-- Table rendering -->
+            <div *ngIf="subsection.table" class="comparison-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th *ngFor="let header of subsection.table.headers">{{ header }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of subsection.table.rows">
+                    <td *ngFor="let cell of row">{{ cell }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Code Examples Section -->
+    <div class="code-examples-section" *ngIf="content.codeExamples && content.codeExamples.length > 0">
+      <h2>Code Examples</h2>
+      <ng-container *ngTemplateOutlet="examples; context: { $implicit: content.codeExamples }" />
+    </div>
+
+    <!-- Images Section -->
+    <div class="images-section" *ngIf="content.images && content.images.length > 0">
+      <h2>Diagrams & Illustrations</h2>
+      <ng-container *ngTemplateOutlet="images; context: { $implicit: content.images }" />
+    </div>
+
+    <!-- Key Points Section -->
+    <div class="key-points-section" *ngIf="content.keyPoints && content.keyPoints.length > 0">
+      <h2>Key Points</h2>
+      <ul class="key-points-list">
+        <li *ngFor="let point of content.keyPoints">{{ point }}</li>
+      </ul>
+    </div>
+
+    <!-- References Section -->
+    <div class="references-section" *ngIf="content.references && content.references.length > 0">
+      <h2>References</h2>
+      <ul class="references-list">
+        <li *ngFor="let reference of content.references">
+          @if (reference.url; as url) {
+            <a [href]="url">{{ reference.title }}</a>
+          } @else {
+            {{ reference.title }}
+          }
+        </li>
+      </ul>
+    </div>
+
+    <!-- Interview Questions Section -->
+    <div class="interview-section" *ngIf="content.interviewQA && content.interviewQA.length > 0">
+      <h2>💼 Interview Questions & Answers</h2>
+      <div *ngFor="let qa of content.interviewQA; let i = index" class="interview-qa">
+        <div class="question-header">
+          <span class="question-number">Q{{ i + 1 }}</span>
+          <h3 class="question">{{ qa.question }}</h3>
+          <span *ngIf="qa.difficulty" class="difficulty-badge" [class]="'difficulty-' + qa.difficulty">
+            {{ qa.difficulty }}
+          </span>
+          <div *ngIf="qa.tags && qa.tags.length > 0" class="tags">
+            <span *ngFor="let tag of qa.tags" class="tag">{{ tag }}</span>
+          </div>
+        </div>
+        <p class="answer-content">{{ qa.answer }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- No Content Available Message -->
+  <div class="content motion-enter" *ngIf="lesson.status === 'missing' && lesson.summary">
+    <h1>{{ lesson.title }}</h1>
+    <div class="overview-section">
+      <h2>Quick overview</h2>
+      <p class="overview-text">{{ lesson.summary }}</p>
+    </div>
+    @if (lesson.subtopicLinks.length) {
+      <div class="references-section">
+        <h2>Subtopics</h2>
+        <ul class="references-list">
+          @for (link of lesson.subtopicLinks; track link.params.subtopicId) {
+            <li><a routerLink="/subtopic-detail" [queryParams]="link.params">{{ link.name }}</a></li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+  <div class="content no-content motion-enter" *ngIf="(lesson.status === 'missing' && !lesson.summary) || lesson.status === 'error'">
+    <h1>{{ lesson.title || 'Lesson' }}</h1>
+    <div class="no-content-message">
+      <p *ngIf="lesson.status === 'missing'">📝 Content for this subtopic is not yet available.</p>
+      <p *ngIf="lesson.status === 'error'">Could not load this lesson. Refresh the page to try again.</p>
+    </div>
+  </div>
+
+  @if (lesson.next; as next) {
+    @if (lesson.status !== 'loading') {
+      <nav class="lesson-pagination" aria-label="Lesson navigation">
+        <a routerLink="/subtopic-detail" [queryParams]="next.params">
+          <span>Next subtopic <span aria-hidden="true">→</span></span>
+          <strong>{{ next.name }}</strong>
+        </a>
+      </nav>
+    }
+  }
+
+  <!-- Back to Top Button -->
+  <button 
+    class="back-to-top" 
+    [class.visible]="showBackToTop"
+    (click)="scrollToTop()"
+    title="Back to Top">
+    ↑
+  </button>
+</div>
+}

@@ -1,0 +1,76 @@
+.syllabus-container {
+  background: linear-gradient(135deg, var(--syllabus-light), var(--syllabus-background));
+  color: var(--syllabus-ink);
+}
+
+.page-title {
+  color: var(--syllabus-title);
+}
+
+.syllabus-container .search-input {
+  border-color: var(--syllabus-accent);
+  background: #fff;
+  color: var(--syllabus-ink);
+}
+
+.syllabus-container .search-input:focus {
+  border-color: var(--syllabus-title);
+  box-shadow: 0 5px 20px rgb(var(--syllabus-accent-rgb) / 20%);
+}
+
+.filter-btn {
+  border-color: var(--syllabus-accent);
+  color: var(--syllabus-title);
+}
+
+.filter-btn:hover {
+  background: var(--syllabus-light);
+  border-color: var(--syllabus-title);
+}
+
+.filter-btn.active {
+  background: var(--syllabus-action);
+  color: #fff;
+  border-color: var(--syllabus-accent);
+}
+
+.filter-btn.basic.active {
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-color: #10b981;
+}
+
+.filter-btn.intermediate.active {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: #f59e0b;
+}
+
+.filter-btn.advanced.active {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-color: #ef4444;
+}
+
+.action-btn,
+.scroll-top {
+  background: var(--syllabus-action);
+  color: #fff;
+}
+
+.action-btn:hover,
+.scroll-top:hover {
+  background: var(--syllabus-action-hover);
+}
+
+.action-btn.clear {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+.action-btn.clear:hover {
+  background: linear-gradient(135deg, #4b5563, #374151);
+}
+
+.results-info {
+  color: var(--syllabus-title);
+  background: rgb(var(--syllabus-accent-rgb) / 10%);
+  padding: 5px 9px;
+  border-radius: 8px;
+}

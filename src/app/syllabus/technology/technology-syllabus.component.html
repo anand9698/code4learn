@@ -1,0 +1,94 @@
+@if (technology; as tech) {
+<div class="syllabus-container" [class]="'theme-' + tech.id">
+  <div class="course-panel motion-enter">
+    <header class="course-header">
+      <span class="course-icon" aria-hidden="true">{{ tech.icon }}</span>
+      <div>
+        <h1 class="page-title">{{ tech.name }} syllabus</h1>
+        <p class="page-subtitle">{{ tech.subtitle }}</p>
+      </div>
+      <app-syllabus-counts [stats]="stats" />
+    </header>
+
+    <div class="controls-section">
+      <input
+        type="search"
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="applyFilters()"
+        aria-label="Search topics and subtopics"
+        placeholder="Search topics and subtopics"
+        class="search-input">
+
+      <div class="difficulty-filters" role="group" aria-label="Filter by difficulty">
+        <button 
+          class="filter-btn" 
+          [class.active]="selectedDifficulty === 'all'"
+          [attr.aria-pressed]="selectedDifficulty === 'all'"
+          (click)="filterByDifficulty('all')">
+          All
+        </button>
+        <button 
+          class="filter-btn basic" 
+          [class.active]="selectedDifficulty === 'basic'"
+          [attr.aria-pressed]="selectedDifficulty === 'basic'"
+          (click)="filterByDifficulty('basic')">
+          Basic
+        </button>
+        <button 
+          class="filter-btn intermediate" 
+          [class.active]="selectedDifficulty === 'intermediate'"
+          [attr.aria-pressed]="selectedDifficulty === 'intermediate'"
+          (click)="filterByDifficulty('intermediate')">
+          Intermediate
+        </button>
+        <button 
+          class="filter-btn advanced" 
+          [class.active]="selectedDifficulty === 'advanced'"
+          [attr.aria-pressed]="selectedDifficulty === 'advanced'"
+          (click)="filterByDifficulty('advanced')">
+          Advanced
+        </button>
+      </div>
+      
+      <div class="action-buttons">
+        <button class="action-btn" (click)="setVisibleSectionsExpanded(true)">📂 Expand All</button>
+        <button class="action-btn" (click)="setVisibleSectionsExpanded(false)">📁 Collapse All</button>
+        <button class="action-btn clear" (click)="clearFilters()" *ngIf="searchTerm || selectedDifficulty !== 'all'">🔄 Clear Filters</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results Info -->
+  <div class="results-info" *ngIf="filteredSections.length !== sections.length">
+    <p>Showing {{ filteredSections.length }} of {{ sections.length }} sections</p>
+  </div>
+
+  <!-- Sections Container -->
+  <div class="sections-container motion-stagger">
+    <div class="no-results" *ngIf="filteredSections.length === 0">
+      <div class="no-results-icon">🔍</div>
+      <h3>No results found</h3>
+      <p>Try adjusting your search or filters</p>
+      <button class="action-btn" (click)="clearFilters()">Clear Filters</button>
+    </div>
+    
+    <app-section
+      *ngFor="let section of filteredSections"
+      [section]="section"
+      [technologyId]="tech.id"
+      [expanded]="openSections.has(section)"
+      (toggled)="toggleSection(section)">
+    </app-section>
+  </div>
+
+  <!-- Quick Navigation -->
+  <button class="scroll-top" (click)="scrollToTop()" title="Back to top">↑</button>
+</div>
+} @else {
+  <div class="syllabus-container theme-java">
+    <div class="course-panel unavailable">
+      <h1 class="page-title">Syllabus unavailable</h1>
+      <p class="page-subtitle">Choose a technology from the learning hub.</p>
+    </div>
+  </div>
+}

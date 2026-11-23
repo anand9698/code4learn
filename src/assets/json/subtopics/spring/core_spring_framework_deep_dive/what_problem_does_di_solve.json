@@ -1,0 +1,44 @@
+{
+  "name": "What Dependency Injection Solves",
+  "overview": "A service that builds its own database client brings the database to every test. Give it a replaceable dependency and see what gets easier.",
+  "sections": [
+    {
+      "title": "Spot the hard-coded dependency",
+      "content": "If a service creates its own database client, changing that client can mean editing the service. Its unit tests may also need infrastructure they were never meant to exercise.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/what_problem_does_di_solve/tight-vs-loose-coupling.svg",
+          "alt": "What dependency injection changes",
+          "caption": "Constructor injection lets the same service use a real dependency or a test double."
+        }
+      ]
+    },
+    {
+      "title": "Move the choice outside",
+      "content": "Accept the collaborator as a constructor parameter. Let application configuration choose the real implementation and let tests provide a fake."
+    },
+    {
+      "title": "Check the result",
+      "content": "Test the same business behavior with a fake. Keep an integration test for real wiring. Measure the setup effort before declaring victory."
+    }
+  ],
+  "keyPoints": [
+    "Refactor one hard-coded dependency and swap in a test double. You've succeeded when the business code works with either implementation."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Reference: Dependency Injection",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans/dependencies/factory-collaborators.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "What is the main gain from DI?",
+      "answer": "A class can use a different collaborator without changing its business logic."
+    },
+    {
+      "question": "Does DI remove the need for integration tests?",
+      "answer": "No. Unit tests can isolate behavior, and integration tests still verify real wiring and interactions."
+    }
+  ]
+}

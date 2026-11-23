@@ -1,0 +1,165 @@
+:host {
+  /* Lesson SVGs use 16 units of text in a 340-unit viewBox. */
+  --diagram-art-width: 21.25em;
+  display: block;
+  min-width: 0;
+}
+
+figure {
+  width: min(100%, calc(var(--diagram-art-width) + 18px));
+}
+
+.preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--course-border, #ddd4e7);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--syllabus-ink, var(--brand-ink));
+  font: inherit;
+  cursor: zoom-in;
+}
+
+.preview:hover {
+  border-color: var(--syllabus-accent, #7760aa);
+  box-shadow: 0 3px 10px #21193720;
+}
+
+.preview-art {
+  display: block;
+  overflow-x: auto;
+}
+
+.preview-art img {
+  width: var(--diagram-art-width);
+}
+
+.preview-action,
+figcaption {
+  font-size: 0.82rem;
+}
+
+.preview-action {
+  justify-self: end;
+  font-weight: 650;
+}
+
+figcaption {
+  margin-top: 4px;
+  color: #564e62;
+  text-align: center;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+}
+
+dialog {
+  width: min(calc(100vw - 16px), 48em);
+  max-width: none;
+  max-height: calc(100dvh - 16px);
+  margin: auto;
+  overflow: hidden;
+  border: 1px solid var(--course-border, #ddd4e7);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--syllabus-ink, var(--brand-ink));
+}
+
+dialog[open] {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  animation: fadeIn var(--motion-fast) ease-out;
+}
+
+dialog::backdrop {
+  background: #211937b8;
+}
+
+.viewer-toolbar,
+.zoom-controls,
+.viewer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.viewer-toolbar {
+  justify-content: space-between;
+  padding: 6px;
+  border-bottom: 1px solid var(--course-border, #ddd4e7);
+  background: var(--syllabus-light, #f7f3fb);
+}
+
+.viewer-toolbar :is(button, a) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  min-width: 36px;
+  padding: 4px 8px;
+  border: 1px solid var(--course-border, #ddd4e7);
+  border-radius: 6px;
+  background: #fff;
+  color: inherit;
+  font: inherit;
+  font-size: 0.85rem;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.viewer-toolbar .download-diagram {
+  background: var(--brand-ink);
+  color: #fff;
+}
+
+.viewer-toolbar .download-diagram:focus-visible {
+  outline-offset: 1px;
+}
+
+.viewer-toolbar button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+output {
+  min-width: 3.5ch;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.diagram-viewport {
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #f8f6fb;
+}
+
+.diagram-viewport img {
+  max-width: none;
+  border-radius: 0;
+}
+
+@container (width < 22.5em) {
+  .preview {
+    padding-inline: 0;
+  }
+
+  .preview-action {
+    margin-inline-end: 6px;
+  }
+}
+
+@media (pointer: coarse) {
+  .viewer-toolbar :is(button, a) {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}

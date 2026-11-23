@@ -1,0 +1,44 @@
+{
+  "name": "Spring Bean Scopes",
+  "overview": "Should everyone share one bean, or does each request get its own? Choose a scope by deciding who shares it and when it should disappear.",
+  "sections": [
+    {
+      "title": "Choose who shares the bean",
+      "content": "Singleton gives one instance per bean definition per container. Prototype creates a new instance for each lookup or resolution. Spring does not manage prototype destruction.",
+      "images": [
+        {
+          "url": "assets/images/subtopics/spring/core_spring_framework_deep_dive/bean_scopes_singleton_prototype_request_session_application/bean-scopes-overview.svg",
+          "alt": "Spring bean scopes",
+          "caption": "The scope controls who shares an instance and when it is created."
+        }
+      ]
+    },
+    {
+      "title": "Choose how long web state lives",
+      "content": "Request scope lasts one HTTP request. Session scope lasts one HTTP session. Application scope shares the instance across one ServletContext."
+    },
+    {
+      "title": "Match scope to state",
+      "content": "A stateless service usually fits singleton scope. Keep request data in request scope and session data in session scope. Shared mutable state needs a thread-safety plan."
+    }
+  ],
+  "keyPoints": [
+    "Choose scopes for a stateless service, one request's data, and a shopping cart. Explain who shares each instance and for how long."
+  ],
+  "references": [
+    {
+      "title": "Spring Framework Documentation - Core Container",
+      "url": "https://docs.spring.io/spring-framework/reference/core/beans.html"
+    }
+  ],
+  "interviewQA": [
+    {
+      "question": "Does injecting a prototype into a singleton create a new instance every call?",
+      "answer": "Ordinary direct injection resolves it once at injection time. Use a provider or another lookup strategy if you need fresh instances."
+    },
+    {
+      "question": "Which scope fits an HTTP request’s data?",
+      "answer": "Request scope gives each request its own instance."
+    }
+  ]
+}

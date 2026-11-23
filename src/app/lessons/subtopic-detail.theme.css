@@ -1,0 +1,59 @@
+.subtopic-detail-container {
+  --lesson-accent: var(--syllabus-title, #007bff);
+  background: var(--syllabus-background, #f5f5f5);
+}
+
+.back-button {
+  background: var(--lesson-accent);
+}
+
+.back-button:hover {
+  background: var(--syllabus-hover-end, #0056b3);
+}
+
+.section-name {
+  color: var(--lesson-accent);
+}
+
+.topic-name {
+  color: var(--syllabus-ink, #28a745);
+}
+
+.content {
+  background: var(--syllabus-light, #fff);
+}
+
+.content h1 {
+  color: var(--syllabus-ink, #333);
+  border-bottom: 3px solid var(--lesson-accent);
+}
+
+.spinner {
+  border-top-color: var(--lesson-accent);
+}
+
+.overview-section {
+  background: var(--syllabus-background, #e7f3ff);
+  border-left: 4px solid var(--lesson-accent);
+}
+
+.back-to-top {
+  background: var(--lesson-accent);
+}
+
+.back-to-top:hover {
+  background: var(--syllabus-hover-end, #0056b3);
+}
+
+.subsection {
+  background: var(--syllabus-background, #f8f9fa);
+  border-left: 3px solid var(--lesson-accent);
+}
+
+.subsection h3 {
+  color: var(--syllabus-ink, #28a745);
+}
+
+.references-section {
+  background: var(--syllabus-background, #f8f9fa);
+}
